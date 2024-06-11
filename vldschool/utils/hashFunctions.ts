@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+const bcrypt = require("bcryptjs")
 
 export async function saltAndHash(plainText: string): Promise<string> {
     const saltRounds = 10;
