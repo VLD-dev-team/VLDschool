@@ -1,10 +1,13 @@
-import React from "react";
+'use client'
+
+import {ReactNode, useState} from "react";
 
 export default function AuthScreenLayout({
     children,
 }: {
-    children: React.ReactNode
+    children: ReactNode
 }) {
+    const [authMode, setAuthMode] = useState('signup');
     return (
         <div className="w-full h-full flex">
             <div className="flex-1">
