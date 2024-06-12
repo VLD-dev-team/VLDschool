@@ -12,30 +12,20 @@ export default function AuthScreenLayout({
 }) {
     // On renvoi l'écran
     return (
-        <div className="w-full h-full flex bg-[var(--primary-container)] text-[var(--on-primary-container)]">
-            <div className="basis-1/2 flex justify-center items-center">
-                <div className="flex flex-col h-full justify-around">
-                    <AuthText />
-                    <div>
-                        <p className="text-xl font-semibold mb-4">Liens rapides</p>
-                        <div className="flex items-center gap-2 mb-4">
-                            <img className="size-5" src="/icons/home.svg" alt=">" />
-                            <Link href={'/'} className="underline">Accueil du site</Link>
-                        </div>
-                        <div className="flex items-center gap-2 mb-4">
-                            <img className="size-5" src="/icons/book.svg" alt=">" />
-                            <Link href={'/terms-and-conditions'} className="underline">Conditions d'utilisation</Link>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <img className="size-5" src="/icons/policy.svg" alt=">" />
-                            <Link href={'/privacy'} className="underline">Déclaration de confidentialité</Link>
-                        </div>
+        <div className="p-8 flex flex-col md:flex-row gap-5 md:gap-0 h-full bg-[var(--primary-container)] text-[var(--on-primary-container)] overflow-scroll justify-between">
+            <div className="md:flex md:flex-col md:justify-center md:h-full md:basis-1/2 md:items-center shrink-0">
+                <div className="md:flex md:flex-col md:justify-around md:h-full md:w-4/5">
+                    <AuthText></AuthText>
+                    <div className="hidden md:block">
+                        <Links></Links>
                     </div>
                 </div>
             </div>
-            <div className="basis-1/2">
-                {children}
+            {children}
+            <div className="md:hidden">
+                <Links></Links>
             </div>
+
         </div>
     )
 }
@@ -63,6 +53,26 @@ function AuthText() {
             />
             <p className="mt-5 text-2xl font-semibold">{title}</p>
             <p>{subtitle}</p>
+        </div>
+    )
+}
+
+function Links() {
+    return (
+        <div>
+            <p className="md:text-xl font-semibold mb-2 md:mb-4">Liens rapides</p>
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
+                <img className="size-5" src="/icons/home.svg" alt=">" />
+                <Link href={'/'} className="underline">Accueil du site</Link>
+            </div>
+            <div className="flex items-center gap-2 mb-2 md:mb-4">
+                <img className="size-5" src="/icons/book.svg" alt=">" />
+                <Link href={'/terms-and-conditions'} className="underline">Conditions d'utilisation</Link>
+            </div>
+            <div className="flex items-center gap-2">
+                <img className="size-5" src="/icons/policy.svg" alt=">" />
+                <Link href={'/privacy'} className="underline">Déclaration de confidentialité</Link>
+            </div>
         </div>
     )
 }
