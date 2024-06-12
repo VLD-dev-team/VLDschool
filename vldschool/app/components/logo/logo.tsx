@@ -27,7 +27,7 @@ export default function VLDLogo() {
                         .cls-2, .cls-4 {
                             fill: #fff;
                         }
-
+ 
                         .cls-3, .cls-5 {
                             stroke-width: 5px;
                         }
