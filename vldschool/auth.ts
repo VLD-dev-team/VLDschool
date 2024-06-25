@@ -5,6 +5,11 @@ import { DatabaseService } from "./db"
  
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PostgresAdapter(new DatabaseService().pool),
-  session: { strategy: "jwt" },
+  callbacks: {
+    session({ session, user }) {
+      session.user.id = user.id
+      return session
+    },
+  },  
   ...authConfig,
 })

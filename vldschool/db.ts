@@ -1,15 +1,16 @@
 import { Pool } from "pg";
 
 export class DatabaseService {
-    private static instance: DatabaseService;
-    private dbPool: Pool | null = null;
+    private static dbPool: Pool | null = null;
 
     constructor() {
-        this.init();
+        if (DatabaseService.dbPool == null) {
+            this.initPool();
+        }
     }
 
-    private init = (): Pool => {
-        this.dbPool = new Pool({
+    private initPool = (): Pool => {
+        DatabaseService.dbPool = new Pool({
             host: process.env.DATABASE_HOST,
             user: process.env.DATABASE_USER,
             password: process.env.DATABASE_PASSWORD,
@@ -19,14 +20,14 @@ export class DatabaseService {
             connectionTimeoutMillis: 2000,
             port: 5432,
         });
-        return this.dbPool;
+        return DatabaseService.dbPool;
     }
 
     public get pool(): Pool {
-        if (this.dbPool == null) {
-            return this.init();
+        if (DatabaseService.dbPool == null) {
+            return this.initPool();
         } else {
-            return this.dbPool;
+            return DatabaseService.dbPool;
         }
     }
 

@@ -2,7 +2,7 @@ import Google from "next-auth/providers/google"
 import Credentials from "next-auth/providers/credentials";
 import type { NextAuthConfig } from "next-auth"
 import { saltAndHash } from "./utils/hashFunctions";
-import { getAccountByEmail } from "./database/getAccount";
+import { getAccountByEmail } from "./databaseFunctions/getAccount";
 
 // Notice this is only an object, not a full Auth.js instance
 export default {
@@ -25,10 +25,12 @@ export default {
                 // logic to verify if user exists
                 user = await getAccountByEmail(`${credentials.email}`);
 
-                if (!user) {
+                if (user == null) {
                     // No user found, so this is their first attempt to login
                     // meaning this is also the place you could do registration
-                    throw new Error("User not found.")
+                    console.log("No user founded");
+                    
+                    throw new Error("User not found.");
                 }
 
                 const bddPassword = await user.getUserHashedPassword();
