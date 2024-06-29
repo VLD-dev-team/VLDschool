@@ -1,24 +1,22 @@
 import { auth, signOut } from "@/auth"
-import { redirect } from "next/navigation"
+import { redirect } from "next/navigation";
 
 export default async function SignOutPage() {
-
-    // Restrict access only when ths user is connected
-    const session = await auth()
-    if (!session) {
-        redirect("/auth")
+    const session = await auth();
+    if (session) {
+        redirect("/home");
     }
 
     return (
-        <div>
-            <h5>Se déconnecter ?</h5>
+        <div className="w-full basis-1/2">
+            <h5>Souhaitez-vous vraiment vous déconnecter ? ?</h5>
             <form
                 action={async (formData) => {
                     "use server"
                     await signOut({ redirectTo: "/auth" })
                 }}
             >
-                <button type="submit">Sign out</button>
+                <button type="submit" className="border-[1px] border-[var(--neutral)] rounded flex items-center gap-2 p-4 w-full mt-3">Se déconnecter</button>
             </form>
         </div>
     )
