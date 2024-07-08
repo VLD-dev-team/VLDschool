@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import GoogleAuthButton from "./components/googleAuthButton";
+import GoogleAuthButton from "./components/GoogleForm";
 
 export const metadata: Metadata = {
     title: "VLDschool",
