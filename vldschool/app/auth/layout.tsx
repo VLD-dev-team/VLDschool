@@ -1,18 +1,23 @@
-import { Metadata } from "next";
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
-import GoogleAuthButton from "./components/GoogleForm";
-
-export const metadata: Metadata = {
-    title: "VLDschool",
-    description: "Trouvez la formation qu'il vous faut avec VLDschool.",
-};
+import { usePathname } from "next/navigation";
 
 export default function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    let bigText: string = "Entrez votre adresse mail ou connectez-vous via Google pour continuer"
+    const pathname = usePathname()
+    if (pathname.endsWith('/signout')) {
+        bigText = "Confirmer la déconnexion à votre compte VLDschool"
+    } 
+    if (pathname.endsWith('verify-request')) {
+        bigText = "Vérification du compte VLDschool via un lien envoyé sur votre adresse email"
+    }
+
     return (
         <div className="h-full bg-[var(--primary-container)] overflow-scroll flex items-center justify-center">
             <div className="p-8 flex gap-2 md:bg-[var(--surface)] md:w-[60%] md:h-[60%] rounded items-center">
@@ -28,7 +33,7 @@ export default function RootLayout({
                             />
                             <p className="text-2xl">school</p>
                         </div>
-                        <p className="text-2xl">Entrez votre adresse mail ou connectez-vous via Google pour continuer</p>
+                        <p className="text-2xl">{bigText}</p>
                     </div>
                     <div className="hidden md:block">
                         <Links />
