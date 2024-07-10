@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "Trouvez la formation qu'il vous faut avec VLDschool.",
 };
 
-export default function Layout({
+export default function AppLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

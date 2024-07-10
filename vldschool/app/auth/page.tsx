@@ -7,7 +7,7 @@ import EmailForm from "./components/EmailForm";
 export default async function Page() {
   const session = await auth();
   if (session) {
-    redirect('/home')
+    redirect('/app')
   }
 
   return (
