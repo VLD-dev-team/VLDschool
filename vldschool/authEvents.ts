@@ -24,10 +24,11 @@ export const authEvents = {
 
         // Sauvegarde de l'id stripe dans la base de données
         const customerID = stripeCustomer?.id ?? "";
-        db.executeQuery('UPDATE users SET "stripeCustomerID" = $1 WHERE id = $2 ;', [customerID, userID]);
+        await db.executeQuery('UPDATE users SET "stripeCustomerID" = $1 WHERE id = $2 ;', [customerID, userID]);
 
         // Affectation du cours linux
-        
+        const courseID = 0;
+        await db.executeQuery('INSERT INTO courseregistrations ("studentID", "courseID", "studentLastChapter", "isFavorite") VALUES ( $1 , 0 , "" , true )', [userID]);
 
         return;
     }
