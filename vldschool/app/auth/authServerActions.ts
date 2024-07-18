@@ -3,12 +3,12 @@
 import { auth, signIn, signOut } from "@/auth"
 
 export async function authSignInWithEmail(formData: FormData) {
-    await signIn('resend', formData, { redirectTo: "/app" })
+    await signIn('resend', formData, { redirectTo: "/dashboard" })
     return '';
 }
 
 export async function authSignInWithGoogle() {
-    await signIn('google', { redirectTo: "/app" })
+    await signIn('google', { redirectTo: "/dashboard" })
     return '';
 }
 
