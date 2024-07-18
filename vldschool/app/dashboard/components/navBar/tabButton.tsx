@@ -1,14 +1,20 @@
+"use client"
+
 import Link from "next/link";
 import { NextPage } from "next";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 export default function TabButton(
-    { selected, href, isGoogleIcon, iconNameOrPath }: {
-        selected: boolean,
+    { href, isGoogleIcon, iconNameOrPath }: {
         href: string,
         isGoogleIcon: boolean,
         iconNameOrPath: string
     }) {
-    const selectedProperties = (selected) ? "bg-[var(--primary)]" : "";
+
+    const pathname = usePathname()
+    const selectedProperties = (pathname.endsWith(href)) ? "bg-[var(--primary)]" : "";
+
     return (
         <Link href={href} className={"p-[20px] rounded-full cursor-pointer border-[2px] border-[var(--primary)] aspect-square flex items-center justify-center hover:bg-[var(--primary-hover)] " + selectedProperties}>
             {

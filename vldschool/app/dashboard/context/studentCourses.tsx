@@ -17,12 +17,12 @@ const initialStudentCoursesState: StudentCoursesStateTypes = {
   loading: false,
 }
 
-export const StudentCoursesContext = createContext<StudentCoursesStateTypes>(initialStudentCoursesState);
-export const StudentCoursesDispatchContext = createContext<Dispatch<any> | null>(null);
+const StudentCoursesContext = createContext<StudentCoursesStateTypes>(initialStudentCoursesState);
+const StudentCoursesDispatchContext = createContext<Dispatch<any>>(() => {});
 
-const STUDENT_COURSES_LOADED = "STUDENT_COURSES_LOADED";
-const COURSE_ADDED_TO_FAVORITE = "COURSE_ADDED_TO_FAVORITE";
-const COURSE_REMOVED_FROM_FAVORITE = "COURSE_REMOVE_FROM_FAVORITE";
+export const STUDENT_COURSES_LOADED = "STUDENT_COURSES_LOADED";
+export const COURSE_ADDED_TO_FAVORITE = "COURSE_ADDED_TO_FAVORITE";
+export const COURSE_REMOVED_FROM_FAVORITE = "COURSE_REMOVE_FROM_FAVORITE";
 
 function StudentCourseReducer(StudentCoursesState: StudentCoursesStateTypes, actionPayload: any): StudentCoursesStateTypes {
   switch (actionPayload.type) {
