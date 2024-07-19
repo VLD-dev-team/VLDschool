@@ -1,13 +1,73 @@
 import { Metadata } from "next";
 import React from "react";
+import LandingPageProfile from "./components/landingPageProfileSelector";
+import WelcomeTimer from "./components/welcomeTimer";
+import Logos from "./components/topCircleLogo";
+import Card from "./components/card";
+import { auth } from "@/auth";
 
 export const metadata: Metadata = {
   title: "VLDschool",
   description: "Trouvez la formation qu'il vous faut avec VLDschool.",
 };
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const session = await auth();
+
   return (
-    <div>Landing Page</div>
-  )   
+    <div className="w-full h-full bg-[var(--primary-container)] overflow-y-scroll text-white">
+      <header className="fixed z-10 w-full min-h-[100px] flex flex-col items-center">
+        <a href="/shop" className="w-full z-10 h-[50px] bg-white text-black flex items-center justify-center">
+          <div className="w-[70%] h-full flex items-center justify-between ">
+            <p><strong>Offre de bienvenue !</strong> Formation linux offerte + réduction sur la boutique</p>
+            <div className="flex gap-2 items-center">
+              <p>Se termine le <WelcomeTimer></WelcomeTimer></p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+                <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </a>
+        <div className="w-[70%] h-[100px] flex items-center justify-between">
+          <nav className="flex items-center gap-6">
+            <a href="#"><img src="/logos/vldminiwhite.png" alt="VLDschool" className="h-10" /></a>
+            <a href="#" className="hover:underline">Accueil</a>
+            <a href="/shop" className="hover:underline">Boutique</a>
+          </nav>
+          <LandingPageProfile></LandingPageProfile>
+        </div>
+      </header>
+      <section className="pt-64 pb-20 flex items-center justify-center flex-col gap-4">
+        <Logos></Logos>
+        <h1 className="text-4xl font-semibold">Trouvez la formation qu'il vous faut avec VLDschool.</h1>
+        <h2 className="text-2xl">Informatique, graphisme, 3D, tout ce qu'il faut pour bien vous lancer !</h2>
+      </section>
+      <section className="flex items-center justify-center gap-8">
+        <a href="/shop" className="flex items-center justify-center gap-2 rounded bg-[var(--primary)] px-7 py-4 hover:bg-[var(--primary-hover)] transition-colors">
+          <p>Parcourir nos offres de formations</p>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+            <path d="M10.75 16.82A7.462 7.462 0 0 1 15 15.5c.71 0 1.396.098 2.046.282A.75.75 0 0 0 18 15.06v-11a.75.75 0 0 0-.546-.721A9.006 9.006 0 0 0 15 3a8.963 8.963 0 0 0-4.25 1.065V16.82ZM9.25 4.065A8.963 8.963 0 0 0 5 3c-.85 0-1.673.118-2.454.339A.75.75 0 0 0 2 4.06v11a.75.75 0 0 0 .954.721A7.506 7.506 0 0 1 5 15.5c1.579 0 3.042.487 4.25 1.32V4.065Z" />
+          </svg>
+        </a>
+        <a href="/auth" className="flex items-center justify-center gap-2 rounded bg-[var(--primary)] px-7 py-4 hover:bg-[var(--primary-hover)] transition-colors">
+          {(session) ? <p>Accéder au dashboard</p> : <p>Créer un compte étudiant</p>}
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+            <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
+          </svg>
+        </a>
+      </section>
+      <section className="pt-36 flex flex-col items-center justify-center gap-2">
+        <h3 className="text-xl">Bénéficiez d'une formation complète et accompagnée.</h3>
+        <p>Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
+        <div className="w-[70%] grid grid-cols-2">
+          <Card>
+            <div className="flex">Une formation compléte</div>
+          </Card>
+
+          <div>sqaure</div>
+          <div>sqaure</div>
+        </div>
+      </section>
+    </div>
+  )
 }
