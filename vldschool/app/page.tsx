@@ -19,9 +19,9 @@ export default async function LandingPage() {
       <header className="fixed z-10 w-full min-h-[100px] flex flex-col items-center backdrop-blur-lg bg-[var(--primary-container-70)]">
         <a href="/shop" className="w-full z-10 h-[50px] bg-white text-black flex items-center justify-center">
           <div className="w-[90%] xl:w-[70%] h-full flex items-center justify-between ">
-            <p><strong>Offre de bienvenue !</strong> Formation linux offerte + réduction sur la boutique</p>
+            <p><strong>Offre de bienvenue ! </strong><span className="hidden md:inline">Formation linux offerte + réduction sur la boutique</span></p>
             <div className="flex gap-2 items-center">
-              <p>Se termine le <WelcomeTimer></WelcomeTimer></p>
+              <p className="hidden lg:block">Se termine le <WelcomeTimer></WelcomeTimer></p>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                 <path fillRule="evenodd" d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z" clipRule="evenodd" />
               </svg>
@@ -30,26 +30,25 @@ export default async function LandingPage() {
         </a>
         <div className="w-[90%] xl:w-[70%] h-[100px] flex items-center justify-between">
           <nav className="flex items-center gap-6">
-            <a href="#"><img src="/logos/vldminiwhite.png" alt="VLDschool" className="h-10" /></a>
-            <a href="#" className="hover:underline">Accueil</a>
-            <a href="/shop" className="hover:underline flex items-center gap-1" target="_blank">
+            <a href="#" className="shrink-0"><img src="/logos/vldminiwhite.png" alt="VLDschool" className="h-10" /></a>
+            <a href="#" className="hidden md:block hover:underline">Accueil</a>
+            <a href="/shop" className="hidden sm:flex hover:underline items-center gap-1" target="_blank">
               <p>Boutique</p>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
                 <path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z" />
                 <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z" />
               </svg>
-
             </a>
           </nav>
           <LandingPageProfile></LandingPageProfile>
         </div>
       </header>
-      <section className="pt-64 pb-20 flex items-center justify-center flex-col gap-4">
+      <section className="pt-48 md:pt-64 pb-20 flex items-center justify-center flex-col gap-4">
         <Logos></Logos>
-        <h1 className="text-4xl font-semibold text-center">Trouvez la formation qu'il vous faut avec VLDschool.</h1>
-        <h2 className="text-2xl text-center">Informatique, graphisme, 3D, tout ce qu'il faut pour bien vous lancer !</h2>
+        <h1 className="text-4xl font-semibold text-center px-6">Trouvez la formation qu'il vous faut avec VLDschool.</h1>
+        <h2 className="text-2xl text-center px-6">Informatique, graphisme, 3D, tout ce qu'il faut pour bien vous lancer !</h2>
       </section>
-      <section className="flex items-center justify-center gap-8">
+      <section className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8">
         <a href="/shop" className="flex items-center justify-center gap-2 rounded bg-[var(--primary)] px-7 py-4 hover:bg-[var(--primary-hover)] transition-colors">
           <p>Parcourir nos offres de formations</p>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
@@ -64,8 +63,8 @@ export default async function LandingPage() {
         </a>
       </section>
       <section className="py-36 flex flex-col items-center justify-center gap-2">
-        <h3 className="text-xl">Bénéficiez d'une formation complète et accompagnée.</h3>
-        <p>Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
+        <h3 className="text-xl px-6 text-center">Bénéficiez d'une formation complète et accompagnée.</h3>
+        <p className="px-6 text-center">Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
         <div className="w-[90%] xl:w-[70%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           <Card>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
