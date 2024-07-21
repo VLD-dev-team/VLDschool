@@ -20,6 +20,8 @@ export default async function NavBar() {
                     <TabButton href={`/dashboard/courses/${course.courseID}`} iconNameOrPath={`${course.iconURL}`} isGoogleIcon={false} key={`key-${course.courseID}`} />
                 ))
             }
+            <div className="h-[2px] bg-[var(--primary)] w-1/6 mx-1"></div>
+            <TabButton href={"/shop"} iconNameOrPath={"shop"} isGoogleIcon={true} />
         </div>
     )
 }

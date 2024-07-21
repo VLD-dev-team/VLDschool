@@ -16,9 +16,9 @@ export default async function LandingPage() {
 
   return (
     <div className="w-full h-full bg-[var(--primary-container)] overflow-y-scroll text-white">
-      <header className="fixed z-10 w-full min-h-[100px] flex flex-col items-center">
+      <header className="fixed z-10 w-full min-h-[100px] flex flex-col items-center backdrop-blur-lg bg-[var(--primary-container-70)]">
         <a href="/shop" className="w-full z-10 h-[50px] bg-white text-black flex items-center justify-center">
-          <div className="w-[70%] h-full flex items-center justify-between ">
+          <div className="w-[90%] xl:w-[70%] h-full flex items-center justify-between ">
             <p><strong>Offre de bienvenue !</strong> Formation linux offerte + réduction sur la boutique</p>
             <div className="flex gap-2 items-center">
               <p>Se termine le <WelcomeTimer></WelcomeTimer></p>
@@ -28,11 +28,18 @@ export default async function LandingPage() {
             </div>
           </div>
         </a>
-        <div className="w-[70%] h-[100px] flex items-center justify-between">
+        <div className="w-[90%] xl:w-[70%] h-[100px] flex items-center justify-between">
           <nav className="flex items-center gap-6">
             <a href="#"><img src="/logos/vldminiwhite.png" alt="VLDschool" className="h-10" /></a>
             <a href="#" className="hover:underline">Accueil</a>
-            <a href="/shop" className="hover:underline">Boutique</a>
+            <a href="/shop" className="hover:underline flex items-center gap-1" target="_blank">
+              <p>Boutique</p>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
+                <path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z" />
+                <path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z" />
+              </svg>
+
+            </a>
           </nav>
           <LandingPageProfile></LandingPageProfile>
         </div>
@@ -59,11 +66,11 @@ export default async function LandingPage() {
       <section className="py-36 flex flex-col items-center justify-center gap-2">
         <h3 className="text-xl">Bénéficiez d'une formation complète et accompagnée.</h3>
         <p>Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
-        <div className="w-[70%] grid grid-cols-2 gap-8 mt-10">
+        <div className="w-[90%] xl:w-[70%] grid grid-cols-2 gap-8 mt-10">
           <Card>
             <div className="flex">
               <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-white border">description</span>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
                 <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
@@ -73,7 +80,7 @@ export default async function LandingPage() {
           <Card>
             <div className="flex">
               <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-white border">edit</span>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">edit</span>
                 <p className="pt-2 font-semibold">Des projets et des exercices guidés sur chaque sujet du cours</p>
                 <p className="basis-1/2 shrink-0 pt-2">Des exercices et des projets vous permettront d'experimenter chaque notion de votre formation. Les projets soumis seront vérifié par nos professeurs pour vous faire un retour sur vos erreurs.</p>
               </div>
@@ -83,7 +90,7 @@ export default async function LandingPage() {
           <Card>
             <div className="flex">
               <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-white border">description</span>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
                 <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
@@ -94,7 +101,7 @@ export default async function LandingPage() {
           <Card>
             <div className="flex">
               <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-white border">description</span>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
                 <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
