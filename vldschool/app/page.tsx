@@ -46,8 +46,8 @@ export default async function LandingPage() {
       </header>
       <section className="pt-64 pb-20 flex items-center justify-center flex-col gap-4">
         <Logos></Logos>
-        <h1 className="text-4xl font-semibold">Trouvez la formation qu'il vous faut avec VLDschool.</h1>
-        <h2 className="text-2xl">Informatique, graphisme, 3D, tout ce qu'il faut pour bien vous lancer !</h2>
+        <h1 className="text-4xl font-semibold text-center">Trouvez la formation qu'il vous faut avec VLDschool.</h1>
+        <h2 className="text-2xl text-center">Informatique, graphisme, 3D, tout ce qu'il faut pour bien vous lancer !</h2>
       </section>
       <section className="flex items-center justify-center gap-8">
         <a href="/shop" className="flex items-center justify-center gap-2 rounded bg-[var(--primary)] px-7 py-4 hover:bg-[var(--primary-hover)] transition-colors">
@@ -66,46 +66,46 @@ export default async function LandingPage() {
       <section className="py-36 flex flex-col items-center justify-center gap-2">
         <h3 className="text-xl">Bénéficiez d'une formation complète et accompagnée.</h3>
         <p>Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
-        <div className="w-[90%] xl:w-[70%] grid grid-cols-2 gap-8 mt-10">
+        <div className="w-[90%] xl:w-[70%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           <Card>
-            <div className="flex">
-              <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
-                <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
+                <p className="pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
-              <div className="w-full basis-1/2 bg-cover my-8 rounded-s-xl" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}></div>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}></div>
             </div>
           </Card>
           <Card>
-            <div className="flex">
-              <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">edit</span>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">edit</span>
                 <p className="pt-2 font-semibold">Des projets et des exercices guidés sur chaque sujet du cours</p>
-                <p className="basis-1/2 shrink-0 pt-2">Des exercices et des projets vous permettront d'experimenter chaque notion de votre formation. Les projets soumis seront vérifié par nos professeurs pour vous faire un retour sur vos erreurs.</p>
+                <p className="pt-2">Des exercices et des projets vous permettront d'experimenter chaque notion de votre formation. Les projets soumis seront vérifié par nos professeurs pour vous faire un retour sur vos erreurs.</p>
               </div>
-              <div className="w-full basis-1/2 bg-cover my-8 rounded-s-xl" style={{ backgroundImage: "url('/screenshots/exo_linux.png')" }}></div>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/exo_linux.png')" }}></div>
             </div>
           </Card>
           <Card>
-            <div className="flex">
-              <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
-                <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
+                <p className="pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
-              <div className="w-full basis-1/2 bg-cover my-8 rounded-s-xl" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
               </div>
             </div>
           </Card>
           <Card>
-            <div className="flex">
-              <div className="clear basis-1/2 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral-dim)] border">description</span>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">description</span>
                 <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
-                <p className="basis-1/2 shrink-0 pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
+                <p className="pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
               </div>
-              <div className="w-full basis-1/2 bg-cover my-8 rounded-s-xl" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
               </div>
             </div>
           </Card>
