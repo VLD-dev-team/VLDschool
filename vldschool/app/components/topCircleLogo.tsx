@@ -1,5 +1,5 @@
 export default function Logos() {
-    return (<div className="flex flex-wrap justify-center -space-x-3 mb-6 px-16">
+    return (<div className="flex flex-wrap justify-center -space-x-3 mb-6 px-10">
         <TopCircleLogo>
             <img src="https://s2.qwant.com/thumbr/0x380/f/5/3cf01c458bf156249973c93e511e0f839d987d47317c96da909f8f5f01b8b9/Python_logo_icon.png?u=https%3A%2F%2Flogos-download.com%2Fwp-content%2Fuploads%2F2016%2F10%2FPython_logo_icon.png&q=0&b=1&p=0&a=0" alt="" />
         </TopCircleLogo>

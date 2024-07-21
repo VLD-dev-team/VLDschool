@@ -13,15 +13,15 @@ export default function RootLayout({
     const pathname = usePathname()
     if (pathname.endsWith('/signout')) {
         bigText = "Confirmer la déconnexion à votre compte VLDschool"
-    } 
+    }
     if (pathname.endsWith('verify-request')) {
         bigText = "Vérification du compte VLDschool via un lien envoyé sur votre adresse email"
     }
 
     return (
-        <div className="h-full bg-[var(--primary-container)] overflow-scroll flex items-center justify-center">
-            <div className="p-8 flex gap-2 md:bg-[var(--surface)] md:w-[60%] md:h-[60%] rounded items-center">
-                <div className="flex flex-col gap-4 md:basis-1/2 h-full justify-between">
+        <div className="h-full bg-[var(--primary-container)] overflow-scroll sm:flex items-center justify-center">
+            <div className="p-8 flex gap-10 sm:bg-[var(--surface)] sm:w-[90%] md:w-[80%] md:h-min lg:w-[70%] xl:w-[60%] 2xl:w-[50%] rounded items-center">
+                <div className="flex flex-col gap-4 sm:basis-1/2 h-full justify-between">
                     <div>
                         <div className="flex items-center gap-1 mb-8">
                             <Image
@@ -35,13 +35,12 @@ export default function RootLayout({
                         </div>
                         <p className="text-2xl">{bigText}</p>
                     </div>
-                    <div className="hidden md:block">
+                    <div className="hidden sm:block">
                         <Links />
                     </div>
                 </div>
-                <div className="hidden md:block w-[1px] bg-[var(--neutral)] h-[80%] mx-8 shrink-0"></div>
                 {children}
-                <div className="md:hidden">
+                <div className="sm:hidden">
                     <Links />
                 </div>
             </div>
@@ -52,7 +51,7 @@ export default function RootLayout({
 function Links() {
     return (
         <div>
-            <div className="flex items-center gap-2 mb-2 md:mb-4">
+            <div className="flex items-center gap-2 mb-2 md:mb-4 mt-40">
                 <img className="size-5 invert dark:invert-0" src="/icons/book.svg" alt=">" />
                 <Link href={'/terms-and-conditions'} className="underline">Conditions d'utilisation</Link>
             </div>
