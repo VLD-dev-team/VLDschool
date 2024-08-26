@@ -11,7 +11,7 @@ export default async function Page() {
   }
 
   return (
-    <div className="h-full md:basis-1/2 flex items-center">
+    <div className="h-full w-full md:basis-1/2 flex items-center">
       <div className="w-full">
         <GoogleAuthButton />
         <EmailForm />

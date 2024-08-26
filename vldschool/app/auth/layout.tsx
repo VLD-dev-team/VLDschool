@@ -19,8 +19,8 @@ export default function RootLayout({
     }
 
     return (
-        <div className="h-full bg-[var(--primary-container)] overflow-scroll sm:flex items-center justify-center">
-            <div className="p-8 flex gap-10 sm:bg-[var(--surface)] sm:w-[90%] md:w-[80%] md:h-min lg:w-[70%] xl:w-[60%] 2xl:w-[50%] rounded items-center">
+        <div className="h-full bg-[var(--primary-container)] overflow-scroll block md:flex items-center justify-center">
+            <div className="p-8 flex flex-col md:flex-row gap-10 md:bg-[var(--surface)] w-full md:w-[90%] md:h-min lg:w-[70%] xl:w-[60%] 2xl:w-[50%] rounded items-center">
                 <div className="flex flex-col gap-4 sm:basis-1/2 h-full justify-between">
                     <div>
                         <div className="flex items-center gap-1 mb-8">
@@ -35,12 +35,12 @@ export default function RootLayout({
                         </div>
                         <p className="text-2xl">{bigText}</p>
                     </div>
-                    <div className="hidden sm:block">
+                    <div className="hidden md:block w-full">
                         <Links />
                     </div>
                 </div>
                 {children}
-                <div className="sm:hidden">
+                <div className="md:hidden w-full h-full">
                     <Links />
                 </div>
             </div>
@@ -50,7 +50,7 @@ export default function RootLayout({
 
 function Links() {
     return (
-        <div>
+        <div className="w-full">
             <div className="flex items-center gap-2 mb-2 md:mb-4 mt-40">
                 <img className="size-5 invert dark:invert-0" src="/icons/book.svg" alt=">" />
                 <Link href={'/terms-and-conditions'} className="underline">Conditions d'utilisation</Link>
