@@ -24,7 +24,7 @@ export default async function OfferLayer() {
         const remainingTime = (redeem_limitDate ?? (now / 1000)) - (now / 1000)
 
         return (
-            <div className="bg-[var(--primary-container)] mt-10 p-10 rounded-lg flex text-white">
+            <div className="bg-[var(--primary-container)] mt-10 p-10 rounded-lg flex text-white drop-shadow-lg">
                 <div className="basis-1/3 shrink-0">
                     <h2 className="text-xl font-bold uppercase">{offer.name}</h2>
                     <p className="mt-4">{offer.metadata!.DESC}</p>
