@@ -26,11 +26,11 @@ export default async function OfferLayer() {
         return (
             <div className="bg-[var(--primary-container)] mt-10 p-10 rounded-lg flex text-white">
                 <div className="basis-1/3 shrink-0">
-                    <h2 className="text-xl">{offer.name}</h2>
+                    <h2 className="text-xl font-bold uppercase">{offer.name}</h2>
                     <p className="mt-4">{offer.metadata!.DESC}</p>
                 </div>
                 <div className="basis-2/3 shrink-0 text-right">
-                    <p>Fin de la période de promotion : 30 Juin 2024, 23h59</p>
+                    <p className="font-semibold mb-4">Fin de la période de promotion : 30 Juin 2024, 23h59</p>
                     <Countdown remainingTime={remainingTime}></Countdown>
                 </div>
             </div>

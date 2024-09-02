@@ -27,8 +27,8 @@ export default function Countdown({ remainingTime }: { remainingTime: number }) 
     const seconds = (time % 60).toString().split(".")[0].padStart(2, "0");
 
     return (
-        <p>
-            {days}J {hours}:{minutes}:{seconds}
+        <p className="text-white text-3xl font-mono flex items-center justify-end gap-2">
+            <span className="bg-white text-black rounded-lg p-3">{days}J</span> ; <span className="bg-white text-black rounded-lg p-3">{hours}h</span> : <span className="bg-white text-black rounded-lg p-3">{minutes}min</span> : <span className="bg-white text-black rounded-lg p-3">{seconds}s</span>
         </p>
     );
 }
