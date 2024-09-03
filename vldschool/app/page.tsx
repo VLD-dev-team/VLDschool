@@ -4,6 +4,8 @@ import LandingPageProfile from "./components/landingPageProfileSelector";
 import WelcomeTimer from "./components/welcomeTimer";
 import Logos from "./components/topCircleLogo";
 import Card from "./components/card";
+import VisitorSection from "./components/visitorCount";
+// import CarouselSection from "./components/caroussel";
 import { auth } from "@/auth";
 
 export const metadata: Metadata = {
@@ -110,17 +112,18 @@ export default async function LandingPage() {
           </Card>
         </div>
       </section>
+      <VisitorSection></VisitorSection>
       <section className="py-6 flex flex-col items-center justify-center gap-2">
-        <section className="py-8 flex flex-col items-center justify-center gap-4 px-4 sm:px-6 md:px-9">
-          <h3 className="text-xl px-6 text-center">Profitez d'un système pensé pour l'apprentissage</h3>
+        <section className="py-8 flex flex-col items-center justify-center gap-4 px-4 sm:px-6 md:px-9 max-w-[70%]">
+          <h3 className="text-xl px-6 text-center font-bold">Profitez d'un système pensé pour l'apprentissage</h3>
           <div className="w-full p-4 rounded-md">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="flex-1 mb-4 md:mb-0 md:pr-8">
-                <h4 className="text-lg md:text-xl font-bold text-white">Le système VLD xp</h4>
+                <h4 className="text-lg md:text-xl text-white">Le système VLD xp</h4>
                 <p className="text-gray-300">Un système d'XP vous encourageant à apprendre et à développer vos compétences. Apprenez tout en gagnant des récompenses.</p>
                 <div className="mt-6 bg-[var(--surface)] rounded text-[var(--neutral)] p-4 rounded-md max-w-full">
                   <div className="flex flex-col md:flex-row items-center gap-4">
-                    <div className="flex-shrink-0 w-full md:w-1/5">
+                    <div className="flex-shrink-0 w-full md:w-1/5 text-center items-center justify-center">
                       <span className="material-symbols-rounded text-[48px]">query_stats</span>
                     </div>
                     <div className="flex-1 w-full md:w-4/5 overflow-hidden">
@@ -138,9 +141,82 @@ export default async function LandingPage() {
               </div>
             </div>
           </div>
+          <div className="w-full p-4 rounded-md">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="flex-1 mb-4 md:mb-0 md:pr-8">
+                <div className="mt-6 bg-[var(--surface)] rounded text-[var(--neutral)] p-4 rounded-md max-w-full">
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="flex-shrink-0 w-full md:w-1/5 text-center items-center justify-center">
+                      <span className="material-symbols-rounded text-[48px]">box</span>
+                    </div>
+                    <div className="flex-1 w-full md:w-4/5 overflow-hidden">
+                      <h5 className="text-lg font-semibold text-white">Les récompenses</h5>
+                      <p className="text-gray-300">C'est à travers votre montée en niveau que vous retrouverez des récompenses, toutes les unes plus intéressantes que les autres, allant de code promotionnel -10%, jusqu'à une formation offerte en passant par des vidéos gratuites et des heures de cours particuliers avec le professeur de votre choix.</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+              <div className="flex-shrink-0 text-center md:pr-8">
+                <div className="text-3xl md:text-4xl mb-4 text-white">
+                  <span className="material-symbols-rounded text-[48px]">featured_seasonal_and_gifts</span>
+                </div>
+                <p className="text-gray-300">Profitez des récompenses</p>
+              </div>
+            </div>
+          </div>
+          <div className="w-full p-4 rounded-md">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="flex-1 mb-4 md:mb-0 md:pr-8">
+                <div className="mt-6 bg-[var(--surface)] rounded text-[var(--neutral)] p-4 rounded-md max-w-full">
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="flex-shrink-0 w-full md:w-1/5 text-center items-center justify-center">
+                      <span className="material-symbols-rounded text-[48px]">monitoring</span>
+                    </div>
+                    <div className="flex-1 w-full md:w-4/5 overflow-hidden">
+                      <h5 className="text-lg font-semibold text-white">Le suivi</h5>
+                      <p className="text-gray-300">C'est lorsque vous aurez appris et ce pendant plusieurs jours que vous pourrez constater votre évolution. En effet grâce à notre graphique de suivi, vous pourrez voir quel jour vous avez contribué le plus ce dernier mois mais aussi à quel hauteur vous aurez appris en 1 mois.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-shrink-0 text-center md:pr-8">
+                <div className="text-3xl md:text-4xl mb-4 text-white">
+                  <span className="material-symbols-rounded text-[48px]">analytics</span>
+                </div>
+                <p className="text-gray-300">Constatez vos progrès</p>
+              </div>
+            </div>
+          </div>
         </section>
-
       </section>
+      <section className="py-8 flex flex-col items-center justify-center gap-2">
+        <h3 className="text-xl px-6 text-center font-bold">Profitez de l'offre VLD+</h3>
+        <p className="px-6 text-center">Si vous souhaitez aller encore plus loin</p>
+        <div className="w-[90%] xl:w-[70%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+          <Card>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">video_camera_front</span>
+                <p className="pt-2 font-semibold">10h de cours particuliers</p>
+                <p className="pt-2">Des cours à des prix privilégiers avec le professeur de la formation à disposer quand vous le souhaitez en fonction des disponibilités de votre professeur. Ces cours ont été creer afin d'avoir le suivi le plus personnalisé possible.</p>
+              </div>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/particular_course.png')" }}></div>
+            </div>
+          </Card>
+          <Card>
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
+              <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">post_add</span>
+                <p className="pt-2 font-semibold">Du contenu supplémentaire et un accès privilégier</p>
+                <p className="pt-2">En plus des différents cours donnés par le professeur, vous aurez accès à un canal de communication privée vous permettant de discuter avec les professeurs des cours et de récupérer les supports de cours.</p>
+              </div>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/vip_screen.png')" }}></div>
+            </div>
+          </Card>
+        </div>
+      </section>
+      {/* <CarouselSection></CarouselSection> */}
     </div>
   )
 }
