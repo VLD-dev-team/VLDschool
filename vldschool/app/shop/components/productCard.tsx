@@ -1,5 +1,4 @@
 import { stripe } from "@/stripe";
-import { Article } from "@phosphor-icons/react/dist/ssr";
 import Stripe from "stripe";
 
 export default async function ProductCard({ product }: {
