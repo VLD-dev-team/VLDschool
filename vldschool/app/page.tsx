@@ -63,8 +63,8 @@ export default async function LandingPage() {
         </a>
       </section>
       <section className="py-36 flex flex-col items-center justify-center gap-2">
-        <h3 className="text-xl px-6 text-center">Bénéficiez d'une formation complète et accompagnée.</h3>
-        <p className="px-6 text-center">Toute nos formations comprennent les éléments suivant pour vous permettre de réussir</p>
+        <h3 className="text-xl px-6 text-center font-bold">Bénéficiez d'une formation complète et accompagnée.</h3>
+        <p className="px-6 text-center">Toute nos formations comprennent les éléments suivants pour vous permettre de réussir</p>
         <div className="w-[90%] xl:w-[70%] grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           <Card>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
@@ -89,26 +89,57 @@ export default async function LandingPage() {
           <Card>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
               <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">description</span>
-                <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
-                <p className="pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">movie</span>
+                <p className="pt-2 font-semibold">Des vidéos explicatives en plus de chacunes des leçons</p>
+                <p className="pt-2">Vous pourrez retrouver une vidéo explicative pour chaque chapitre afin de mieux comprendre le sujet et de pouvoir progresser.</p>
               </div>
-              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/movie_linux.png')" }}>
               </div>
             </div>
           </Card>
           <Card>
             <div className="flex flex-col lg:flex-row lg:items-center justify-between h-full">
               <div className="lg:basis-9/12 xl:basis-7/12 shrink-0 p-8">
-                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">description</span>
-                <p className="pt-2 font-semibold">Un support écrit disponible en ligne 24h/24h</p>
-                <p className="pt-2">Toutes nos formations sont organisés en chapitres disponibles en ligne depuis le lecteur. Le support écrit est accessible depuis n'importe quel appareil 24h/24h.</p>
+                <span className="material-symbols-rounded text-[24px] rounded-full p-3 border-[var(--neutral)] border">chat</span>
+                <p className="pt-2 font-semibold">Un channel discord pour pouvoir communiquer avec vos professeurs et leurs poser toutes vos questions</p>
+                <p className="pt-2">Vous avez la possibilité d'être guidé de A à Z et même de poser des questions à votre professeur afin de pouvoir éclaircir les différents points que vous n'avez pas compris.</p>
               </div>
-              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/reader_linux.png')" }}>
+              <div className="h-40 lg:h-60 mx-8 lg:mx-0 lg:block lg:w-full bg-cover lg:my-8 lg:rounded-s-xl rounded-t" style={{ backgroundImage: "url('/screenshots/discord_screen.png')" }}>
               </div>
             </div>
           </Card>
         </div>
+      </section>
+      <section className="py-6 flex flex-col items-center justify-center gap-2">
+        <section className="py-8 flex flex-col items-center justify-center gap-4 px-4 sm:px-6 md:px-9">
+          <h3 className="text-xl px-6 text-center">Profitez d'un système pensé pour l'apprentissage</h3>
+          <div className="w-full p-4 rounded-md">
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="flex-1 mb-4 md:mb-0 md:pr-8">
+                <h4 className="text-lg md:text-xl font-bold text-white">Le système VLD xp</h4>
+                <p className="text-gray-300">Un système d'XP vous encourageant à apprendre et à développer vos compétences. Apprenez tout en gagnant des récompenses.</p>
+                <div className="mt-6 bg-[var(--surface)] rounded text-[var(--neutral)] p-4 rounded-md max-w-full">
+                  <div className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="flex-shrink-0 w-full md:w-1/5">
+                      <span className="material-symbols-rounded text-[48px]">query_stats</span>
+                    </div>
+                    <div className="flex-1 w-full md:w-4/5 overflow-hidden">
+                      <h5 className="text-lg font-semibold text-white">Les paliers</h5>
+                      <p className="text-gray-300">Les paliers ont été pensés de manière à ce que tout au long de votre apprentissage, vous puissiez gagner les récompenses. Les niveaux étant de plus en plus durs à atteindre, on vous encourage à développer de nouvelles compétences.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex-shrink-0 text-center md:pl-8">
+                <div className="text-3xl md:text-4xl mb-4 text-white">
+                  <span className="material-symbols-rounded text-[48px]">trending_up</span>
+                </div>
+                <p className="text-gray-300">Gagnez tout en apprenant</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </section>
     </div>
   )
