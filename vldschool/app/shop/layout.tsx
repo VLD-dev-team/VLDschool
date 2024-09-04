@@ -17,7 +17,7 @@ export default function ShopLayout({
           <LandingPageProfile></LandingPageProfile>
         </div>
       </header>
-      <div className="pt-[100px] w-[90%] xl:w-[70%]">
+      <div className="pt-[100px] w-[90%] xl:w-[70%] h-full">
         {children}
       </div>
     </div>
