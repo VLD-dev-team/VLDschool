@@ -1,4 +1,5 @@
-import { signIn } from "@/auth";
+"use client"
+
 import { authSignInWithGoogle } from "../authServerActions";
 
 export default async function GoogleAuthButton() {
