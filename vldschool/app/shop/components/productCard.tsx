@@ -52,13 +52,13 @@ export default async function ProductCard({ product }: {
                     </div>
                 </div>
                 <div className="mt-5 flex gap-3">
-                    <a href={'/buy/' + product.id} className="cursor-pointer flex items-center justify-center gap-2 rounded bg-[var(--primary)] text-[var(--on-primary)] px-4 py-2 hover:bg-[var(--primary-hover)] transition-colors">
+                    <a href={'/shop/buy/' + product.id} className="cursor-pointer flex items-center justify-center gap-2 rounded bg-[var(--primary)] text-[var(--on-primary)] px-4 py-2 hover:bg-[var(--primary-hover)] transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                             <path fillRule="evenodd" d="M2.5 4A1.5 1.5 0 0 0 1 5.5V6h18v-.5A1.5 1.5 0 0 0 17.5 4h-15ZM19 8.5H1v6A1.5 1.5 0 0 0 2.5 16h15a1.5 1.5 0 0 0 1.5-1.5v-6ZM3 13.25a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 0 1.5h-1.5a.75.75 0 0 1-.75-.75Zm4.75-.75a.75.75 0 0 0 0 1.5h3.5a.75.75 0 0 0 0-1.5h-3.5Z" clipRule="evenodd" />
                         </svg>
                         <p>Acheter</p>
                     </a>
-                    <div className="cursor-pointer flex items-center justify-center gap-2 rounded text-[var(--primary)] px-4 py-2 hover:border-[var(--primary)] border-2 transition-colors">
+                    <div className="cursor-pointer flex items-center justify-center gap-2 rounded text-[var(--neutral)] hover:text-[var(--on-primary)] hover:bg-[var(--primary)] px-4 py-2 transition-colors">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
                             <path d="M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                             <path fillRule="evenodd" d="M.664 10.59a1.651 1.651 0 0 1 0-1.186A10.004 10.004 0 0 1 10 3c4.257 0 7.893 2.66 9.336 6.41.147.381.146.804 0 1.186A10.004 10.004 0 0 1 10 17c-4.257 0-7.893-2.66-9.336-6.41ZM14 10a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z" clipRule="evenodd" />
