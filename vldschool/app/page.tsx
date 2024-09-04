@@ -5,7 +5,7 @@ import WelcomeTimer from "./components/welcomeTimer";
 import Logos from "./components/topCircleLogo";
 import Card from "./components/card";
 import VisitorSection from "./components/visitorCount";
-import InterfacePreviewSection from "./components/caroussel";
+import InterfacePreviewSection from "./components/interfaceShowcaseSection";
 import ProgrammingLanguagesSection from "./components/programmingLangagesCarroussel";
 import { auth } from "@/auth";
 
@@ -127,8 +127,8 @@ export default async function LandingPage() {
                       <span className="material-symbols-rounded text-[48px]">query_stats</span>
                     </div>
                     <div className="flex-1 w-full md:w-4/5 overflow-hidden">
-                      <h5 className="text-lg font-semibold text-white">Les paliers</h5>
-                      <p className="text-gray-300">Les paliers ont été pensés de manière à ce que tout au long de votre apprentissage, vous puissiez gagner les récompenses. Les niveaux étant de plus en plus durs à atteindre, on vous encourage à développer de nouvelles compétences.</p>
+                      <h5 className="text-lg font-semibold text-[var(--neutral)]">Les paliers</h5>
+                      <p className="text-gray-400">Les paliers ont été pensés de manière à ce que tout au long de votre apprentissage, vous puissiez gagner les récompenses. Les niveaux étant de plus en plus durs à atteindre, on vous encourage à développer de nouvelles compétences.</p>
                     </div>
                     
                   </div>
@@ -145,8 +145,8 @@ export default async function LandingPage() {
                       <span className="material-symbols-rounded text-[48px]">featured_seasonal_and_gifts</span>
                     </div>
                     <div className="flex-1 w-full md:w-4/5 overflow-hidden">
-                      <h5 className="text-lg font-semibold text-white">Les récompenses</h5>
-                      <p className="text-gray-300">C'est à travers votre montée en niveau que vous retrouverez des récompenses, toutes les unes plus intéressantes que les autres, allant de code promotionnel -10%, jusqu'à une formation offerte en passant par des vidéos gratuites et des heures de cours particuliers avec le professeur de votre choix.</p>
+                      <h5 className="text-lg font-semibold text-[var(--neutral)]">Les récompenses</h5>
+                      <p className="text-gray-400">C'est à travers votre montée en niveau que vous retrouverez des récompenses, toutes les unes plus intéressantes que les autres, allant de code promotionnel -10%, jusqu'à une formation offerte en passant par des vidéos gratuites et des heures de cours particuliers avec le professeur de votre choix.</p>
                     </div>
                     
                   </div>
@@ -163,8 +163,8 @@ export default async function LandingPage() {
                       <span className="material-symbols-rounded text-[48px]">monitoring</span>
                     </div>
                     <div className="flex-1 w-full md:w-4/5 overflow-hidden">
-                      <h5 className="text-lg font-semibold text-white">Le suivi</h5>
-                      <p className="text-gray-300">C'est lorsque vous aurez appris et ce pendant plusieurs jours que vous pourrez constater votre évolution. En effet grâce à notre graphique de suivi, vous pourrez voir quel jour vous avez contribué le plus ce dernier mois mais aussi à quel hauteur vous aurez appris en 1 mois.</p>
+                      <h5 className="text-lg font-semibold text-[var(--neutral)]">Le suivi</h5>
+                      <p className="text-gray-400">C'est lorsque vous aurez appris et ce pendant plusieurs jours que vous pourrez constater votre évolution. En effet grâce à notre graphique de suivi, vous pourrez voir quel jour vous avez contribué le plus ce dernier mois mais aussi à quel hauteur vous aurez appris en 1 mois.</p>
                     </div>
                   </div>
                 </div>
@@ -200,11 +200,9 @@ export default async function LandingPage() {
         </div>
       </section>
       <section className="py-36">
-        {/* <InterfacePreviewSection></InterfacePreviewSection> */}
+        <InterfacePreviewSection></InterfacePreviewSection>
       </section>
-      <section className="py-36">
         <ProgrammingLanguagesSection></ProgrammingLanguagesSection>
-      </section>
     </div>
   )
 }
