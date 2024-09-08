@@ -1,9 +1,9 @@
-import AuthForm from "@/app/auth/components/AuthForm";
 import { auth } from "@/auth"
 import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
-import { redirect } from "next/navigation";
 import Stripe from "stripe";
+import ProductInfo from "./components/productInfo";
+import AuthCheck from "./components/AuthCheck";
 
 export default async function BuyPage({ params }: { params: { productID: string } }) {
 
@@ -30,18 +30,18 @@ export default async function BuyPage({ params }: { params: { productID: string 
     }
 
     const product: Stripe.Product | null = await stripe.products.retrieve(params.productID);
-    
+
 
     return (
-        <div>
-            <ProductInfo></ProductInfo>
-            <AuthForm></AuthForm>
+        <div className="flex gap-5 py-10">
+            <div className="basis-1/3">
+                <ProductInfo product={product}></ProductInfo>
+                <p className="mt-5 text-sm">Votre formation sera disponible immédiatement après votre achat. Veuillez compléter les étapes et choisir vos options pour accéder à votre achat.</p>
+                <p className="mt-5 text-sm text-[var(--neutral-dim)]">Déclaration de confidentialité - Condition d'utilisation - Politique de remboursement</p>
+            </div>
+            <div className="basis-2/3">
+                <AuthCheck productID={product.id}></AuthCheck>
+            </div>
         </div>
-    )
-}
-
-function ProductInfo() {
-    return (
-        <div></div>
     )
 }
