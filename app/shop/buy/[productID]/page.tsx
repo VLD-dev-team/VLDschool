@@ -4,6 +4,7 @@ import { stripe } from "@/stripe";
 import Stripe from "stripe";
 import ProductInfo from "./components/productInfo";
 import AuthCheck from "./components/AuthCheck";
+import VLDplusOption from "./components/VLDplusOption";
 
 export default async function BuyPage({ params }: { params: { productID: string } }) {
 
@@ -30,6 +31,10 @@ export default async function BuyPage({ params }: { params: { productID: string 
     }
 
     const product: Stripe.Product | null = await stripe.products.retrieve(params.productID);
+    let  productOptionVLDplus = null;
+    if (product.metadata.vldplus != null) {
+        productOptionVLDplus: Stripe.Product | null = await stripe.products.retrieve(product.metadata.vldplus);
+    }
 
 
     return (
@@ -39,8 +44,9 @@ export default async function BuyPage({ params }: { params: { productID: string 
                 <p className="mt-5 text-sm">Votre formation sera disponible immédiatement après votre achat. Veuillez compléter les étapes et choisir vos options pour accéder à votre achat.</p>
                 <p className="mt-5 text-sm text-[var(--neutral-dim)]">Déclaration de confidentialité - Condition d'utilisation - Politique de remboursement</p>
             </div>
-            <div className="basis-2/3">
+            <div className="basis-2/3 flex flex-col gap-5">
                 <AuthCheck productID={product.id}></AuthCheck>
+                <VLDplusOption enabled={(session) ? true : false} product={product} productOptionVLDplus={productOptionVLDplus}></VLDplusOption>
             </div>
         </div>
     )
