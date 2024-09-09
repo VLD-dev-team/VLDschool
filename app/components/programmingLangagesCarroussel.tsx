@@ -14,8 +14,8 @@ const ProgrammingLanguagesSection = () => {
   return (
     <section className="py-8 text-[var(--neutral)] flex flex-col items-center">
       <div className="text-center">
-        <h2 className="text-4xl font-bold text-white">Nos formations</h2>
-        <p className="text-gray-300 mt-4 max-w-2xl">
+        <h2 className="text-3xl font-bold text-white">Nos formations</h2>
+        <p className="text-gray-300 mt-4 max-w-xl">
           Découvrez les formations que nous proposons pour développer des compétences solides et efficaces.
         </p>
       </div>
