@@ -30,7 +30,7 @@ export default async function ShopHome() {
             <p className="pt-2">{products.data.filter((product) => product.active == true && product.metadata.shop == "true").length} formations disponibles à l'achat</p>
             <OfferLayer></OfferLayer>
             <h2 className="pt-20 text-xl font-medium">Formations disponibles à l'achat pour vous.</h2>
-            <div className="grid grid-cols-2 gap-10 pt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10">
                 {products.data.map((product: Stripe.Product) => {
                     if (product.active && !studentCourses.includes(product.id) && product.metadata.shop == "true") {
                         return (

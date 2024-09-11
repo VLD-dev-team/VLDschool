@@ -15,9 +15,9 @@ export default async function ProductCard({ product }: {
     }
 
     return (
-        <div className="bg-[var(--surface)] md:flex rounded drop-shadow-lg">
-            <div className="flex basis-1/3 bg-[url(https://school.vld-group.com/image/PythonV3.png)] bg-cover rounded-s"></div>
-            <div className="p-5 basis-2/3">
+        <div className="bg-[var(--surface)] flex flex-col md:flex-row rounded drop-shadow-lg">
+            <div className="flex basis-20 md:basis-1/3 bg-[url(https://school.vld-group.com/image/PythonV3.png)] bg-cover rounded-t md:rounded-s"></div>
+            <div className="p-5 md:basis-2/3">
                 <div className="flex items-center gap-4">
                     <div className="border-2 border-[var(--neutral)] rounded-full size-16 flex items-center justify-center shrink-0">
                         <img className="size-8" src={product.metadata.icon} alt="" />
