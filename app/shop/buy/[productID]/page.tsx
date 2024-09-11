@@ -1,5 +1,3 @@
-"use server";
-
 import { auth } from "@/auth"
 import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
@@ -30,7 +28,7 @@ export default async function BuyPage({ params }: { params: { productID: string 
         productOptionVLDplus = await stripe.products.retrieve(product.metadata.vldplus); // Si pas trouvé malgrès l'ID dans les metadata, l'erreur est renvoyé
         const productVLDplusPrice: Stripe.Price = await stripe.prices.retrieve(`${productOptionVLDplus.default_price}`); // Si pas trouvé, l'erreur est renvoyé
         if (productVLDplusPrice.unit_amount != null) {
-            product.default_price = `${productVLDplusPrice.unit_amount / 100}`
+            productOptionVLDplus.default_price = `${productVLDplusPrice.unit_amount / 100}`
         }
     }
 

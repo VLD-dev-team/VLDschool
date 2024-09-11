@@ -12,13 +12,13 @@ export default function BuyPageClient({product, session, productOptionVLDplus}: 
     const [isVLDplusSelected, selectVLDplus] = useState(false);
 
     return (
-        <div className="flex gap-5 py-10">
+        <div className="md:flex gap-5 py-10">
             <div className="basis-1/3">
                 <ProductInfo product={product} vldplusoption={productOptionVLDplus} isVLDplusSelected={isVLDplusSelected}></ProductInfo>
                 <p className="mt-5 text-sm">Votre formation sera disponible immédiatement après votre achat. Veuillez compléter les étapes et choisir vos options pour accéder à votre achat.</p>
-                <p className="mt-5 text-sm text-[var(--neutral-dim)]">Déclaration de confidentialité - Condition d'utilisation - Politique de remboursement</p>
+                <p className="text-sm text-[var(--neutral-dim)] hidden mt-5 md:block">Déclaration de confidentialité - Condition d'utilisation - Politique de remboursement</p>
             </div>
-            <div className="basis-2/3 flex flex-col gap-5">
+            <div className="basis-2/3 flex flex-col gap-5 mt-5 md:mt-0">
                 <AuthCheck productID={product.id} session={session}></AuthCheck>
                 <VLDplusOption enabled={(session) ? true : false} productOptionVLDplus={productOptionVLDplus} isVLDplusSelected={isVLDplusSelected} selectVLDplus={selectVLDplus}></VLDplusOption>
             </div>

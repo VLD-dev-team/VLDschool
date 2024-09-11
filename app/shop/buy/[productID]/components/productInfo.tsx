@@ -2,7 +2,7 @@
 
 import Stripe from "stripe";
 
-export default async function ProductInfo({ product, vldplusoption, isVLDplusSelected }: { product: Stripe.Product, vldplusoption: Stripe.Product | null, isVLDplusSelected: boolean }) {
+export default function ProductInfo({ product, vldplusoption, isVLDplusSelected }: { product: Stripe.Product, vldplusoption: Stripe.Product | null, isVLDplusSelected: boolean }) {
 
     let productPrice: null | number = null;
     let productVLDplusPrice: null | number = null;
@@ -27,7 +27,7 @@ export default async function ProductInfo({ product, vldplusoption, isVLDplusSel
                 <h1 className="text-xl">Votre panier</h1>
             </div>
 
-            <table className="">
+            <table className="w-full">
                 <thead>
                     <tr>
                         <th className="text-left uppercase text-xs pb-2">Produit</th>
@@ -49,14 +49,13 @@ export default async function ProductInfo({ product, vldplusoption, isVLDplusSel
                             <p className="text-right text-lg">{product.default_price?.toString() ?? "Indisponible"}€</p>
                         </td>
                     </tr>
-
                     {
                         (vldplusoption != null && isVLDplusSelected)
-                            ? (
-                                <tr className="pb-2">
+                            ? ( 
+                                <tr className="m-2">
                                     <td className="flex items-start gap-4">
                                         <div className="flex items-center justify-center shrink-0 pt-2">
-                                            <img className="size-8" src={vldplusoption.metadata.icon} alt="" />
+                                            <img className="size-8 rounded" src={vldplusoption.metadata.icon} alt="" />
                                         </div>
                                         <div>
                                             <p className="normal-case font-semibold text-lg">{vldplusoption.name}</p>
@@ -64,7 +63,7 @@ export default async function ProductInfo({ product, vldplusoption, isVLDplusSel
                                         </div>
                                     </td>
                                     <td className="align-top">
-                                        <p className="text-right text-lg">{vldplusoption.default_price?.toString() ?? "Indisponible"}</p>
+                                        <p className="text-right text-lg">{vldplusoption.default_price?.toString() ?? "Indisponible"}€</p>
                                     </td>
                                 </tr>
                             )
