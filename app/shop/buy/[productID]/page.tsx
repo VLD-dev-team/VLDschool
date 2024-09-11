@@ -1,3 +1,5 @@
+"use server";
+
 import { auth } from "@/auth"
 import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
@@ -5,49 +7,56 @@ import Stripe from "stripe";
 import ProductInfo from "./components/productInfo";
 import AuthCheck from "./components/AuthCheck";
 import VLDplusOption from "./components/VLDplusOption";
+import BuyPageClient from "./components/buyPage";
 
 export default async function BuyPage({ params }: { params: { productID: string } }) {
 
+    // On obtient la session 
     const session = await auth();
+
+    // On prépare la gestion d'erreur
     let error: null | { message: string, type: string } = null;
 
+    // On optient les données du produit en paramètre de l'url depuis stripe
+    let product: Stripe.Product | null = await stripe.products.retrieve(params.productID); // Si pas trouvé, l'erreur est renvoyé
+    const productPrice: Stripe.Price = await stripe.prices.retrieve(`${product.default_price}`); // Si pas trouvé, l'erreur est renvoyé
+    if (productPrice.unit_amount != null) {
+        product.default_price = `${productPrice.unit_amount / 100}`
+    }
+
+    // On prépapre et on obtient le produit VLDplus si il existe pour le cours
+    let productOptionVLDplus: Stripe.Product | null = null;
+    if (product.metadata.vldplus != null) {
+        productOptionVLDplus = await stripe.products.retrieve(product.metadata.vldplus); // Si pas trouvé malgrès l'ID dans les metadata, l'erreur est renvoyé
+        const productVLDplusPrice: Stripe.Price = await stripe.prices.retrieve(`${productOptionVLDplus.default_price}`); // Si pas trouvé, l'erreur est renvoyé
+        if (productVLDplusPrice.unit_amount != null) {
+            product.default_price = `${productVLDplusPrice.unit_amount / 100}`
+        }
+    }
+
+    // Si l'utilisateur est connecté on effectue les vérifications
     if (session) {
         const db = new DatabaseService();
-        const results = await db.executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 ;`, [session.user.id ?? ""]);
+        const results = await db.executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 AND "stripeItemID" = $2 ;`, [session.user.id ?? "x", product.id]);
 
+        // Si erreur lors de la requette sql on renvoi 500
         if (results == null || results.rowCount == null) {
-            error = {
+            throw {
                 message: 'Erreur innatendue du serveur',
                 type: 'server_error'
             }
         }
 
-        if (results.rowCount! > 0) {
-            error = {
+        // Si le cours à déjà été acheté, on renvoi l'erreur
+        if (results.rowCount > 0) {   
+            throw {
                 message: 'Vous possèdez déjà ce cours',
                 type: 'already_owned'
             }
         }
     }
 
-    const product: Stripe.Product | null = await stripe.products.retrieve(params.productID);
-    let  productOptionVLDplus = null;
-    if (product.metadata.vldplus != null) {
-        productOptionVLDplus: Stripe.Product | null = await stripe.products.retrieve(product.metadata.vldplus);
-    }
-
-
     return (
-        <div className="flex gap-5 py-10">
-            <div className="basis-1/3">
-                <ProductInfo product={product}></ProductInfo>
-                <p className="mt-5 text-sm">Votre formation sera disponible immédiatement après votre achat. Veuillez compléter les étapes et choisir vos options pour accéder à votre achat.</p>
-                <p className="mt-5 text-sm text-[var(--neutral-dim)]">Déclaration de confidentialité - Condition d'utilisation - Politique de remboursement</p>
-            </div>
-            <div className="basis-2/3 flex flex-col gap-5">
-                <AuthCheck productID={product.id}></AuthCheck>
-                <VLDplusOption enabled={(session) ? true : false} product={product} productOptionVLDplus={productOptionVLDplus}></VLDplusOption>
-            </div>
-        </div>
+        <BuyPageClient product={product} session={session} productOptionVLDplus={productOptionVLDplus}></BuyPageClient>
     )
 }

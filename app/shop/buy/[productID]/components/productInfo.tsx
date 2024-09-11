@@ -1,14 +1,20 @@
-import { stripe } from "@/stripe";
+"use client";
+
 import Stripe from "stripe";
 
-export default async function ProductInfo({ product }: { product: Stripe.Product }) {
-    let price: null | string = null;
+export default async function ProductInfo({ product, vldplusoption, isVLDplusSelected }: { product: Stripe.Product, vldplusoption: Stripe.Product | null, isVLDplusSelected: boolean }) {
+
+    let productPrice: null | number = null;
+    let productVLDplusPrice: null | number = null;
+    let sum: number = 0;
 
     if (product.default_price != null) {
-        const stripeRetrievedPrice: Stripe.Price = await stripe.prices.retrieve(product.default_price.toString());
-        if (stripeRetrievedPrice.active && stripeRetrievedPrice.unit_amount != null) {
-            price = `${stripeRetrievedPrice.unit_amount / 100}€`
-        }
+        productPrice = parseFloat(`${product.default_price}`);
+        sum += productPrice;
+    }
+    if (vldplusoption != null && vldplusoption.default_price != null) {
+        productVLDplusPrice = parseFloat(`${vldplusoption.default_price}`);
+        sum += productVLDplusPrice;
     }
 
     return (
@@ -40,13 +46,40 @@ export default async function ProductInfo({ product }: { product: Stripe.Product
                             </div>
                         </td>
                         <td className="align-top">
-                            <p className="text-right text-lg">{price ?? "Indisponible"}</p>
+                            <p className="text-right text-lg">{product.default_price?.toString() ?? "Indisponible"}€</p>
                         </td>
                     </tr>
 
+                    {
+                        (vldplusoption != null && isVLDplusSelected)
+                            ? (
+                                <tr className="pb-2">
+                                    <td className="flex items-start gap-4">
+                                        <div className="flex items-center justify-center shrink-0 pt-2">
+                                            <img className="size-8" src={vldplusoption.metadata.icon} alt="" />
+                                        </div>
+                                        <div>
+                                            <p className="normal-case font-semibold text-lg">{vldplusoption.name}</p>
+                                            <p className="text-sm">{vldplusoption.description}</p>
+                                        </div>
+                                    </td>
+                                    <td className="align-top">
+                                        <p className="text-right text-lg">{vldplusoption.default_price?.toString() ?? "Indisponible"}</p>
+                                    </td>
+                                </tr>
+                            )
+                            : null
+                    }
+
                     <tr className="">
                         <th className="text-right text-lg uppercase pt-4">Total</th>
-                        <th className="text-right text-lg uppercase pt-4">0€</th>
+                        <th className="text-right text-lg uppercase pt-4 pl-4">
+                            {
+                                (isVLDplusSelected && vldplusoption != null) 
+                                ? `${sum}€`
+                                : `${productPrice}€`
+                            }
+                        </th>
                     </tr>
 
                 </tbody>

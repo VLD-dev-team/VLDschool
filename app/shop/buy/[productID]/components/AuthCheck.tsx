@@ -1,7 +1,7 @@
 import { auth } from "@/auth"
+import { Session } from "next-auth"
 
-export default async function AuthCheck({productID}: {productID: string}) {
-    const session = await auth();
+export default async function AuthCheck({session, productID}: {session: Session | null, productID: string}) {
 
     if (session) {
         return (
