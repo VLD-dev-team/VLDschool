@@ -3,8 +3,8 @@
 import { Dispatch, SetStateAction } from "react"
 import Stripe from "stripe"
 
-export default function VLDplusOption({ enabled, productOptionVLDplus, isVLDplusSelected, selectVLDplus }:
-    { enabled: boolean, productOptionVLDplus: Stripe.Product | null, isVLDplusSelected: boolean, selectVLDplus: Dispatch<SetStateAction<boolean>> }) {
+export default function VLDplusOption({ loading, enabled, productOptionVLDplus, isVLDplusSelected, selectVLDplus }:
+    { loading: boolean, enabled: boolean, productOptionVLDplus: Stripe.Product | null, isVLDplusSelected: boolean, selectVLDplus: Dispatch<SetStateAction<boolean>> }) {
 
     if (!enabled) {
         return (
@@ -53,14 +53,14 @@ export default function VLDplusOption({ enabled, productOptionVLDplus, isVLDplus
                     <p className="text-[var(--neutral)] truncate">Séléctionnez des options supplémentaires</p>
                 </div>
             </div>
-            <div className={"flex cursor-pointer border mt-5 p-5 rounded justify-between items-center transition-all " + ((isVLDplusSelected) ? "" : "border-[var(--primary)] bg-[var(--primary)]")} onClick={() => selectVLDplus(false)}>
+            <div className={"flex cursor-pointer border mt-5 p-5 rounded justify-between items-center transition-all " + ((isVLDplusSelected) ? "" : "border-[var(--primary)] bg-[var(--primary)]") + ((loading) ? " opacity-75 cursor-progress" : "")} onClick={() => { (!loading) ? selectVLDplus(false) : null }}>
                 <div>
                     <p>Sans option</p>
                     <p className="text-sm">La formule de base avec les cours écrits, les vidéos, les exercices et les projets.</p>
                 </div>
                 <div className="text-xl">0€</div>
             </div>
-            <div className={"flex cursor-pointer border mt-5 p-5 rounded justify-between items-center transition-all " + ((isVLDplusSelected) ? "border-[var(--primary)] bg-[var(--primary)]" : "")} onClick={() => selectVLDplus(true)}>
+            <div className={"flex cursor-pointer border mt-5 p-5 rounded justify-between items-center transition-all " + ((isVLDplusSelected) ? "border-[var(--primary)] bg-[var(--primary)]" : "") + ((loading) ? " opacity-75 cursor-progress" : "")} onClick={() => { (!loading) ? selectVLDplus(true) : null }}>
                 <div>
                     <p>{productOptionVLDplus.name}</p>
                     <p className="text-sm">La formule de base + {productOptionVLDplus.description}</p>
