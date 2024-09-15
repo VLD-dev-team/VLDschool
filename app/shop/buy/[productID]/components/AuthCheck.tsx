@@ -34,14 +34,12 @@ export default function AuthCheck({session, productID}: {session: Session | null
             </div>
             <div>
                 <a href={encodeURI(`/auth?redirectTo=/shop/buy/${productID}`)} className="flex items-center justify-between gap-2 rounded bg-[var(--primary)] px-7 py-4 hover:bg-[var(--primary-hover)] transition-colors">
-                    <p>Créer mon compte - Connexion</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                    <p className="text-[var(--on-primary)]">Créer mon compte - Connexion</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--on-primary)" className="size-6">
                         <path fillRule="evenodd" d="M12.97 3.97a.75.75 0 0 1 1.06 0l7.5 7.5a.75.75 0 0 1 0 1.06l-7.5 7.5a.75.75 0 1 1-1.06-1.06l6.22-6.22H3a.75.75 0 0 1 0-1.5h16.19l-6.22-6.22a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                     </svg>
                 </a>
             </div>
         </div>
     )
-
-
 }

@@ -1,28 +1,25 @@
 import { stripe } from "@/stripe";
 import CheckoutPageClient from "./components/checkoutPageClient";
 import Stripe from "stripe";
+import { auth } from "@/auth";
+import { DatabaseService } from "@/db";
 
 export default async function checkoutPage({ params }: { params: { checkoutsessionID: string } }) {
 
+    // Obtention de la session stripe
     const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(params.checkoutsessionID);
-    const line_items = await stripe.checkout.sessions.listLineItems(checkoutSession.id);
+
+    // Vérification que la session de paiement à bien été intenté par l'utilisateur connecté
+    const session = await auth();
+    const db = new DatabaseService();
+
+    const results = await db.executeQuery("SELECT id FROM users WHERE 'stripeCustomerID' = $1 ;", [`${checkoutSession.customer}`]);
+    if (results.rows[0].id != session?.user.id) {
+        throw {message: "Une erreur est survenue"};
+    }
     
-    const product = await stripe.products.retrieve(`${line_items.data[0].price?.product}`);
-    const productPrice: Stripe.Price = await stripe.prices.retrieve(`${product.default_price}`);
-    if (productPrice.unit_amount != null) {
-        product.default_price = `${productPrice.unit_amount / 100}`
-    }
-
-    let optionnalProduct = null;
-    if (line_items.data.length == 2) {
-        optionnalProduct = await stripe.products.retrieve(`${line_items.data[1].price?.product}`);
-        const productVLDplusPrice: Stripe.Price = await stripe.prices.retrieve(`${optionnalProduct.default_price}`); // Si pas trouvé, l'erreur est renvoyé
-        if (productVLDplusPrice.unit_amount != null) {
-            optionnalProduct.default_price = `${productVLDplusPrice.unit_amount / 100}`
-        }
-    }
-
+    // On passe le client secret au composant client pour qu'il puisse afficher le stripe embedded
     return (
-        <CheckoutPageClient product={product} optionnalProduct={optionnalProduct} isVLDplusSelected={(optionnalProduct != null)} clientSecret={checkoutSession.client_secret}></CheckoutPageClient>
+        <CheckoutPageClient clientSecret={checkoutSession.client_secret}></CheckoutPageClient>
     )
 }
