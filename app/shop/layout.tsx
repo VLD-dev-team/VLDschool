@@ -2,10 +2,9 @@ import { auth } from "@/auth";
 import Link from "next/link";
 
 export default function ShopLayout({
-  children, modal
+  children
 }: Readonly<{
   children: React.ReactNode;
-  modal: React.ReactNode;
 }>) {
   return (
     <div className="w-full h-full overflow-y-scroll flex flex-col items-center">
@@ -21,7 +20,6 @@ export default function ShopLayout({
       </header>
       <div className="pt-[100px] w-[90%] xl:w-[70%] h-full">
         {children}
-        {modal}
         <div id="modal-root" /> 
       </div>
     </div>

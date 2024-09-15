@@ -65,14 +65,15 @@ export async function createCheckoutSession(productID: string, optionVLDplusSele
 
     // On crée la session de paiement
     const stripeSession = await stripe.checkout.sessions.create({
+        ui_mode: "embedded",
         customer: clientStripeID ?? undefined,
         customer_email: (clientStripeID == null) ? session.user.email ?? undefined : undefined,
         line_items: line_items,
         mode: "payment",
         allow_promotion_codes: true,
-        success_url: "http://localhost:3000/shop"
-    })
+        return_url: `${process.env.DOMAIN_URI}/shop/`,
+    });
 
     // On redirige vers la page de paiement ou d'erreur
-    return redirect(stripeSession.url ?? "/error");
+    return redirect(`${process.env.DOMAIN_URI}/shop/checkout/${stripeSession.id}`);
 }

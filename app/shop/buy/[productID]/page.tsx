@@ -2,9 +2,6 @@ import { auth } from "@/auth"
 import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
-import ProductInfo from "./components/productInfo";
-import AuthCheck from "./components/AuthCheck";
-import VLDplusOption from "./components/VLDplusOption";
 import BuyPageClient from "./components/buyPage";
 
 export default async function BuyPage({ params }: { params: { productID: string } }) {
