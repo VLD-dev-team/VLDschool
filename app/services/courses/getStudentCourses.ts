@@ -1,7 +1,7 @@
 "use server"
 
 import { auth } from "@/auth";
-import { Course } from "../types/course";
+import { Course } from "../../types/course";
 import { DatabaseService } from "@/db";
 
 // Importation de la base de données

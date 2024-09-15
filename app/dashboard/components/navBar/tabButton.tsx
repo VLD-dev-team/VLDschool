@@ -1,8 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import { NextPage } from "next";
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 export default function TabButton(

@@ -24,4 +24,5 @@ export default async function checkoutPage({ params }: { params: { checkoutsessi
     return (
         <CheckoutPageClient clientSecret={checkoutSession.client_secret}></CheckoutPageClient>
     )
+    
 }
