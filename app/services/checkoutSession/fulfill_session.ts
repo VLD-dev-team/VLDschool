@@ -59,11 +59,11 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
                 console.log(`Attribution du produit ${product}`)
 
                 // On chercher l'id du cours dans la bdd
-                const searchInternalCourseID = await db.executeQuery('SELECT "courseID" FROM courses WHERE "stripeItemID" = $1)', [product.id]);
+                const searchInternalCourseID = await db.executeQuery('SELECT "courseID" FROM courses WHERE "stripeItemID" = $1 ;', [product.id]);
                 const courseID = searchInternalCourseID.rows[0].courseID;
 
                 // On ajoute le cours à l'étudiant
-                const dbreq = await db.executeQuery('INSERT INTO courseregistration ("studentID", "checkoutSessionID", "courseID", "stripeItemID") VALUES ($1, $2, $3, $4) ;', [userID, checkoutSessionID, courseID, product.id]);
+                const dbreq = await db.executeQuery('INSERT INTO courseregistrations ("studentID", "checkoutSessionID", "courseID", "stripeItemID") VALUES ($1, $2, $3, $4) ;', [userID, checkoutSessionID, courseID, product.id]);
             }
 
             break;
