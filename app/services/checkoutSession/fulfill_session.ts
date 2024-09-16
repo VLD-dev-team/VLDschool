@@ -43,7 +43,7 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
     switch (product.metadata.type) {
         case "tutoring": {
 
-            const results = await db.executeQuery('SELECT "tutoringID" FROM privatelessons WHERE "stripeItemID" = $1 ;', [product.id]);
+            const results = await db.executeQuery('SELECT "tutoringID" FROM privatelessons WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
             if (results.rowCount == 0) {
                 console.log(`Attribution du produit ${product}`)
                 const dbreq = await db.executeQuery('INSERT INTO privatelessons ("stripeItemID", "studentID") VALUES ($1, $2) ;', [product.id, userID]);
@@ -54,7 +54,7 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
 
         case "course": {
             
-            const results = await db.executeQuery('SELECT "courseRegID" FROM courseregistrations WHERE "stripeItemID" = $1 ;', [product.id]);
+            const results = await db.executeQuery('SELECT "courseRegID" FROM courseregistrations WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
             if (results.rowCount == 0) {
                 console.log(`Attribution du produit ${product}`)
 
