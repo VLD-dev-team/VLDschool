@@ -71,7 +71,7 @@ export async function createCheckoutSession(productID: string, optionVLDplusSele
         line_items: line_items,
         mode: "payment",
         allow_promotion_codes: true,
-        return_url: `${process.env.DOMAIN_URI}/shop/`,
+        return_url: `${process.env.DOMAIN_URI}/shop/return/{CHECKOUT_SESSION_ID}`,
     });
 
     // On redirige vers la page de paiement ou d'erreur

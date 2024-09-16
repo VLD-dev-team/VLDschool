@@ -9,9 +9,6 @@ export default async function BuyPage({ params }: { params: { productID: string 
     // On obtient la session 
     const session = await auth();
 
-    // On prépare la gestion d'erreur
-    let error: null | { message: string, type: string } = null;
-
     // On optient les données du produit en paramètre de l'url depuis stripe
     let product: Stripe.Product | null = await stripe.products.retrieve(params.productID); // Si pas trouvé, l'erreur est renvoyé
     const productPrice: Stripe.Price = await stripe.prices.retrieve(`${product.default_price}`); // Si pas trouvé, l'erreur est renvoyé
@@ -36,18 +33,12 @@ export default async function BuyPage({ params }: { params: { productID: string 
 
         // Si erreur lors de la requette sql on renvoi 500
         if (results == null || results.rowCount == null) {
-            throw {
-                message: 'Erreur innatendue du serveur',
-                type: 'server_error'
-            }
+            throw new Error("Erreur innatendue du serveur.")
         }
 
         // Si le cours à déjà été acheté, on renvoi l'erreur
         if (results.rowCount > 0) {   
-            throw {
-                message: 'Vous possèdez déjà ce cours',
-                type: 'already_owned'
-            }
+            throw new Error("Vous possèdez déjà ce cours.")
         }
     }
 

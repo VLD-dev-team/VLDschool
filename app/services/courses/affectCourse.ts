@@ -1,1 +1,0 @@
-export default function affectCourse(courseID: string, studentID: string) {}

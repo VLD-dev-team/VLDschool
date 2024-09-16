@@ -1,10 +1,10 @@
-import { stripe } from "@/stripe";
-import CheckoutPageClient from "./components/checkoutPageClient";
-import Stripe from "stripe";
+import fulfill_session from "@/app/services/checkoutSession/fulfill_session";
 import { auth } from "@/auth";
 import { DatabaseService } from "@/db";
+import { stripe } from "@/stripe";
+import Stripe from "stripe";
 
-export default async function checkoutPage({ params }: { params: { checkoutsessionID: string } }) {
+export default async function ReturnPage({ params }: { params: { checkoutsessionID: string } }) {
 
     // Obtention de la session stripe
     const checkoutSession: Stripe.Checkout.Session = await stripe.checkout.sessions.retrieve(params.checkoutsessionID);
@@ -15,14 +15,21 @@ export default async function checkoutPage({ params }: { params: { checkoutsessi
 
     const results = await db.executeQuery('SELECT id FROM users WHERE "stripeCustomerID" = $1 ;', [`${checkoutSession.customer}`]);
     console.log(results.rows, checkoutSession.customer);
-    
+
     if (results.rows[0].id != session?.user.id) {
-        throw new Error("Une erreur est survenue lors de la procédure d'achat.");
+        throw { message: "Une erreur est survenue" };
     }
-    
-    // On passe le client secret au composant client pour qu'il puisse afficher le stripe embedded
+
+    // Vérification que le paiement est bien terminé et affectation des produits
+    if (checkoutSession.payment_status == "unpaid") {
+        throw new Error("Paiement non terminé")
+    }
+
+    await fulfill_session(checkoutSession.id);
+
     return (
-        <CheckoutPageClient clientSecret={checkoutSession.client_secret}></CheckoutPageClient>
+        <div>Cours attribués</div>
     )
-    
 }
+
+
