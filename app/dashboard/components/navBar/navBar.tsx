@@ -7,8 +7,8 @@ export default async function NavBar() {
     const courses = await getStudentCourses() ?? [];
 
     return (
-        <div className="w-full h-full bg-[var(--primary-container)] flex md:flex-col md:gap-5 md:overflow-y-scroll items-center justify-evenly md:justify-start">
-            <img src="/logos/vldminiwhite.png" alt="VLDschool" width="80%" height={30} className="hidden md:block invert dark:invert-0 mt-4 p-1" />
+        <div className="w-full h-full bg-[var(--primary-container)] rounded-t-xl md:rounded-none flex md:flex-col md:gap-5 md:overflow-y-scroll items-center justify-evenly md:justify-start">
+            <img src="/logos/vldminiwhite.png" alt="VLDschool" width="80%" height={30} className="hidden md:block mt-4 p-1" />
             <TabButton href={"/dashboard"} iconNameOrPath={"home"} isGoogleIcon={true} />
             <TabButton href={"/dashboard/profile"} iconNameOrPath={"person"} isGoogleIcon={true} />
             <div className="shrink-0 hidden md:block h-[2px] bg-[var(--primary)] w-1/6 mx-1"></div>

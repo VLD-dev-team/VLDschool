@@ -1,5 +1,6 @@
 import { auth } from "@/auth"
 import { redirect } from "next/navigation"
+import Shortcuts from "./components/dash/shortcuts"
 
 export default async function Page() {
   const session = await auth()
@@ -9,8 +10,10 @@ export default async function Page() {
   }
 
   return (
-    <div className="">
+    <div>
       <p>Bienvenue {session.user.name}</p>
+      <p className="text-xl font-semibold mb-6">Mon Dashboard</p>
+      <Shortcuts></Shortcuts>
     </div>
   )
 }
