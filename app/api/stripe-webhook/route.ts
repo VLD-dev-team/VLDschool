@@ -17,6 +17,9 @@ export async function POST(request: Request) {
             case "checkout.session.completed":
                 
                 await fulfill_checkout(event.data.object.id);
+
+                // TODO: ajouter email de confirmation de commande
+
                 return new Response(
                     `OK`,
                     {
