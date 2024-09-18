@@ -9,8 +9,8 @@ export default async function Page() {
   }
 
   return (
-    <div className="container">
-      <pre>{session.user?.role}</pre>
+    <div className="">
+      <p>Bienvenue {session.user.name}</p>
     </div>
   )
 }
