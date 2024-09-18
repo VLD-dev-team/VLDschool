@@ -24,13 +24,13 @@ export default async function OfferLayer() {
         const remainingTime = (redeem_limitDate ?? (now / 1000)) - (now / 1000)
 
         return (
-            <div className="bg-[var(--primary-container)] mt-10 p-10 rounded-lg flex text-white drop-shadow-lg">
-                <div className="basis-1/3 shrink-0">
+            <div className="bg-[var(--primary-container)] mt-10 p-5 md:p-10 rounded-lg md:flex text-white drop-shadow-lg">
+                <div className="md:basis-1/3 md:shrink-0">
                     <h2 className="text-xl font-bold uppercase">{offer.name}</h2>
                     <p className="mt-4">{offer.metadata!.DESC}</p>
                 </div>
-                <div className="basis-2/3 shrink-0 text-right">
-                    <p className="font-semibold mb-4">Fin de la période de promotion : 30 Juin 2024, 23h59</p>
+                <div className="md:basis-2/3 md:shrink-0 md:text-right">
+                    <p className="font-semibold mt-4 md:mt-0 mb-4">Fin de la période de promotion : 30 Juin 2024, 23h59</p>
                     <Countdown remainingTime={remainingTime}></Countdown>
                 </div>
             </div>

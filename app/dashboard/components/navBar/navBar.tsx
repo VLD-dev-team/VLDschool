@@ -1,8 +1,6 @@
 import TabButton from "./tabButton";
 import { Course } from "@/app/types/course";
-import { STUDENT_COURSES_LOADED, useStudentCourses, useStudentCoursesDispatch } from "../../context/studentCourses";
-import { useEffect } from "react";
-import { getStudentCourses } from "@/app/services/courses";
+import { getStudentCourses } from "@/app/services/courses/getStudentCourses";
 
 export default async function NavBar() {
     // On importe les cours

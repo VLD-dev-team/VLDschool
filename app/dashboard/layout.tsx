@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import NavBar from "./components/navBar/navBar";
-import { StudentCoursesProvider } from "./context/studentCourses";
 
 export const metadata: Metadata = {
   title: "VLDschool",

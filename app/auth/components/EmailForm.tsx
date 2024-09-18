@@ -2,12 +2,21 @@
 
 import { useState } from "react";
 import { authSignInWithEmail } from "../authServerActions";
+import { useSearchParams } from "next/navigation";
 
-export default async function EmailForm() {
+export default function EmailForm() {
   const [submitted, changeSubmitStatus] = useState(false);
+  let redirectURI = "/dashboard";
+  const redirectParams = useSearchParams()
+  const redirect = redirectParams.get('redirectTo');
+  if (redirect?.startsWith(encodeURI("/shop/buy/"))) {
+    redirectURI = decodeURI(redirect);
+  }
+
+  console.log(redirect)
 
   return (
-    <form action={authSignInWithEmail} onSubmit={() => changeSubmitStatus(true)}>
+    <form action={(formData) => authSignInWithEmail(formData, redirectURI)} onSubmit={() => changeSubmitStatus(true)}>
       <p className="mt-7">Adresse email</p>
       <input
         type="email"

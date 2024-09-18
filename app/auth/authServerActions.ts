@@ -2,13 +2,13 @@
 
 import { auth, signIn, signOut } from "@/auth"
 
-export async function authSignInWithEmail(formData: FormData) {
-    await signIn('resend', formData)
+export async function authSignInWithEmail(formData: FormData, redirectURI: string) {
+    await signIn('resend', formData, { redirectTo: redirectURI })
     return '';
 }
 
-export async function authSignInWithGoogle() {
-    await signIn('google')
+export async function authSignInWithGoogle(redirectURI: string) {
+    await signIn('google', {redirectTo: redirectURI})
     return '';
 }
 

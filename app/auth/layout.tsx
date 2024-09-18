@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export default function RootLayout({
     children,
@@ -11,11 +11,15 @@ export default function RootLayout({
 }>) {
     let bigText: string = "Entrez votre adresse mail ou connectez-vous via Google pour continuer"
     const pathname = usePathname()
+    const redirectParams = useSearchParams().get('redirectTo');
     if (pathname.endsWith('/signout')) {
         bigText = "Confirmer la déconnexion à votre compte VLDschool"
     }
     if (pathname.endsWith('verify-request')) {
         bigText = "Vérification du compte VLDschool via un lien envoyé sur votre adresse email"
+    } 
+    if (redirectParams?.startsWith(encodeURI("/shop/buy/"))) {
+        bigText = "Entrez votre adresse mail ou connectez-vous via Google pour continuer votre achat."
     }
 
     return (
