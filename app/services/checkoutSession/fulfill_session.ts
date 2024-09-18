@@ -1,3 +1,5 @@
+"use server";
+
 import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
@@ -30,10 +32,11 @@ export default async function fulfill_checkout(sessionID: string) {
     const line_items = checkoutSession.line_items?.data ?? [];
 
     // Pour chaque produit, on vérifie qu'il n'a pas déjà été attribué et on l'attribut si nécéssaire
-    let wait = await line_items.map(async (item, index) => await affectCourse(item, userID, checkoutSession.id))
-    
+    let wait = await line_items.map(async (item, index) => await affectCourse(item, userID, checkoutSession.id));
+
     // On return fin de la fonction d'attribution
-    return console.log(`Checkout Session ${checkoutSession.id} à été traité.`)
+    return console.log(`Checkout Session ${checkoutSession.id} à été traité.`);
+
 }
 
 async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessionID: string) {
@@ -53,7 +56,7 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
         }
 
         case "course": {
-            
+
             const results = await db.executeQuery('SELECT "courseRegID" FROM courseregistrations WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
             if (results.rowCount == 0) {
                 console.log(`Attribution du produit ${product}`)
@@ -70,6 +73,7 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
         }
 
         default:
+            console.error(`Le produit ${product.id} ne peut pas être traité automatiquement.`);
             break;
     }
 }
