@@ -8,11 +8,11 @@ export default async function Shortcuts() {
     const LastViewedChapter = await getLastViewedChapterURL();
 
     return (
-        <div className="bg-[var(--surface)] shadow rounded p-4 md:p-8 md:w-fit">
+        <div className="">
             <p className="uppercase text-sm pb-4">Raccourcis rapides</p>
-            <div className="grid grid-cols-2 md:flex gap-3">
+            <div className="flex flex-wrap md:flex gap-3">
                 <Link href={LastViewedChapter ?? "/dashboard/"}>
-                    <ShortcutButton icon={"history"} text={"Reprendre la lecture"}></ShortcutButton>
+                    <ShortcutButton icon={"history"} text={"Reprendre mon dernier cours"}></ShortcutButton>
                 </Link>
                 <Link href={"/privatelessons"}>
                     <ShortcutButton icon={"contact_phone"} text={"Calendrier des visioconférences"}></ShortcutButton>
