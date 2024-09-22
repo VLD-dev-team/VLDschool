@@ -2,6 +2,7 @@ import { auth } from "@/auth"
 import { redirect } from "next/navigation"
 import Shortcuts from "./components/dash/shortcuts"
 import FavoriteCourses from "./components/dash/favoriteCourses"
+import ProgressSummary from "./components/dash/progressSummary"
 
 export default async function Page() {
   const session = await auth()
@@ -17,6 +18,8 @@ export default async function Page() {
       <Shortcuts></Shortcuts>
       <div className="py-4"></div>
       <FavoriteCourses></FavoriteCourses>
+      <div className="py-4"></div>
+      <ProgressSummary></ProgressSummary>
     </div>
   )
 }

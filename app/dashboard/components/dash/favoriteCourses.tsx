@@ -37,7 +37,7 @@ export default async function FavoriteCourses() {
 
 async function DashCourseCard({ course }: { course: Course }) {
     return (
-        <Link className="inline-flex items-center bg-[var(--primary)] px-5 py-3 md:py-5 rounded-xl gap-4 mr-5" href={`/course/${course.courseID}`}>
+        <Link className="inline-flex items-center bg-[var(--primary)] px-5 py-3 md:py-5 rounded-xl gap-4 mr-5 md:min-w-[400px]" href={`/course/${course.courseID}`}>
             <div className="shrink-0">
                 <div className="md:border-2 rounded-full md:p-5">
                     <img src={course.iconURL} alt="" className="size-8 md:size-10" />
