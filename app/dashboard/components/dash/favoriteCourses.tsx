@@ -1,5 +1,6 @@
 import { getStudentCourses } from "@/app/services/courses/getStudentCourses"
 import { Course } from "@/app/types/course";
+import Link from "next/link";
 
 export default async function FavoriteCourses() {
 
@@ -8,7 +9,7 @@ export default async function FavoriteCourses() {
     return (
         <div>
             <p className="uppercase text-sm pb-4">Vos cours favoris</p>
-            <div className="bg-[var(--surface)] rounded p-4">
+            <div className="bg-[var(--surface)] rounded p-4 md:p-6 overflow-x-scroll">
                 {
                     (favoriteCourses == null || favoriteCourses.length == 0)
                         ? <div className="py-4 grid place-items-center md:flex md:px-4 gap-2">
@@ -17,15 +18,41 @@ export default async function FavoriteCourses() {
                             </svg>
                             <p>Pas de cours mis en favoris</p>
                         </div>
-                        : <div>
-
-                        </div>
+                        : (
+                            <div className="inline-block w-max">
+                                {
+                                    favoriteCourses.map(course => {
+                                        return (
+                                            <DashCourseCard course={course} />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
                 }
             </div>
         </div>
     )
 }
 
-async function courseCard(course: Course) {
-    
+async function DashCourseCard({ course }: { course: Course }) {
+    return (
+        <Link className="inline-flex items-center bg-[var(--primary)] px-5 py-3 md:py-5 rounded-xl gap-4 mr-5" href={`/course/${course.courseID}`}>
+            <div className="shrink-0">
+                <div className="md:border-2 rounded-full md:p-5">
+                    <img src={course.iconURL} alt="" className="size-8 md:size-10" />
+                </div>
+            </div>
+            <div>
+                <p className="font-semibold md:text-xl">{course.name}</p>
+                <p className="truncate text-sm md:text-base line-clamp-1 md:line-clamp-2">{course.desc}</p>
+                <span className="hidden md:flex items-center mt-2">
+                    <p className="uppercase text-sm">Page du cours</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
+                        <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+        </Link>
+    )
 }
