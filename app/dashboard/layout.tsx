@@ -16,7 +16,7 @@ export default function AppLayout({
       <div className="shrink-0 md:w-[100px] ">
         <NavBar></NavBar>
       </div>
-      <div className="grow p-8 md:p-12">{children}</div>
+      <div className="grow p-8 md:p-12 overflow-y-scroll">{children}</div>
     </div>
   );
 }
