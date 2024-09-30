@@ -39,6 +39,6 @@ export default function ProgressChart({ progressData }: { progressData: { totalX
     }
 
     return (
-        <Bar options={options} data={data} />
+        <Bar options={options} data={data} height={"200px"}/>
     )
 }

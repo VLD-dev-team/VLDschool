@@ -25,7 +25,7 @@ export const getProgressSummary = async (): Promise<{ totalXP: number, days: { p
         )
 
         SELECT
-            Date AS "progressDate",
+            TO_CHAR(d.Date, 'DD/MM/YYYY') AS "progressDate",
             COALESCE(SUM(p."progressScore"), 0)::int AS "dailyProgressScore"
         FROM
             DateRange d
