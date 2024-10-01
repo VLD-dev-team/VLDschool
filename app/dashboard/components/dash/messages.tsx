@@ -1,6 +1,12 @@
-import { getProgressSummary } from "@/app/services/progress/getProgressSummary";
+"use client";
 
-export default async function DashBoardMessages() {
+import { getSocket } from "@/app/utils/getSocket";
+
+export default function DashBoardMessages() {
+
+    const socket = getSocket();
+
+
 
     return (
         <div>
