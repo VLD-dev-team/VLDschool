@@ -4,7 +4,7 @@ import { ChatRoom } from "@/app/types/chat";
 import { auth } from "@/auth";
 import { DatabaseService } from "@/db";
 
-export default async function geeChatRooms(): Promise<ChatRoom[] | null> {
+export default async function geChatRooms(): Promise<ChatRoom[] | null> {
 
     const session = await auth();
     if (!session) {
@@ -28,7 +28,7 @@ export default async function geeChatRooms(): Promise<ChatRoom[] | null> {
             name: room.name,
             iconPath: room.iconPath,
             unreadCount: room.unreadCount ?? 0,
-            lastChat: {
+            lastChat: null /* {
                 chatID: room.lastChat.chatID,
                 chatRoomID: room.lastChat.chatRoomID,
                 sendDate: room.lastChat.sendDat,
@@ -37,7 +37,7 @@ export default async function geeChatRooms(): Promise<ChatRoom[] | null> {
                 responseTo: null,
                 attachements: null,
                 readedBy: []
-            },
+            } */,
             members: []
         })
     })

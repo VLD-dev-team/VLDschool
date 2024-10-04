@@ -2,70 +2,76 @@
 
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
 import { Course } from "@/app/types/course"
+import { ChatRoom } from "@/app/types/chat";
 
-interface StudentCoursesStateTypes {
-  courses: Course[],
-  favoriteCourses: Course[],
+interface ChatStateTypes {
+  rooms: ChatRoom[],
   error: string,
   loading: boolean,
 }
 
-const initialStudentCoursesState: StudentCoursesStateTypes = {
-  courses: new Array<Course>,
-  favoriteCourses: new Array<Course>,
+const initialChatState: ChatStateTypes = {
+  rooms: new Array<ChatRoom>,
   error: "",
   loading: false,
 }
 
-const StudentCoursesContext = createContext<StudentCoursesStateTypes>(initialStudentCoursesState);
-const StudentCoursesDispatchContext = createContext<Dispatch<any>>(() => {});
+const ChatContext = createContext<ChatStateTypes>(initialChatState);
+const ChatDispatchContext = createContext<Dispatch<any>>(() => { });
 
-export const STUDENT_COURSES_LOADED = "STUDENT_COURSES_LOADED";
-export const COURSE_ADDED_TO_FAVORITE = "COURSE_ADDED_TO_FAVORITE";
-export const COURSE_REMOVED_FROM_FAVORITE = "COURSE_REMOVE_FROM_FAVORITE";
+export const CHATROOMS_LOADED = "CHATROOMS_LOADED";
+export const NEW_CHATROOM = "NEW_CHATROOM";
+export const CHATROOM_DELETED = "CHATROOM_DELETED";
+export const NEW_MESSAGE_IN_CHATROOM = "NEW_MESSAGE_IN_CHATROOM";
+export const CHATROOM_READ = "CHATROOM_READ"
 
-function StudentCourseReducer(StudentCoursesState: StudentCoursesStateTypes, actionPayload: any): StudentCoursesStateTypes {
+function StudentCourseReducer(ChatState: ChatStateTypes, actionPayload: any): ChatStateTypes {
   switch (actionPayload.type) {
-    case STUDENT_COURSES_LOADED:
+    case CHATROOMS_LOADED:
       return {
-        courses: actionPayload.courses,
-        favoriteCourses: actionPayload.courses.filter((course: Course) => course.isFavorite === false),
+        rooms: actionPayload.courses,
         error: "",
         loading: false,
       }
-    case COURSE_ADDED_TO_FAVORITE:
+    case NEW_CHATROOM:
       return {
-        ...StudentCoursesState,
-        favoriteCourses: [...StudentCoursesState.favoriteCourses, actionPayload],
+        ...ChatState,
       }
-    case COURSE_REMOVED_FROM_FAVORITE:
+    case CHATROOM_DELETED:
       return {
-        ...StudentCoursesState,
-        favoriteCourses: StudentCoursesState.favoriteCourses.filter((course: Course) => course.courseID !== actionPayload.courseID),
+        ...ChatState,
+      }
+    case NEW_MESSAGE_IN_CHATROOM:
+      return {
+        ...ChatState,
+      }
+    case CHATROOM_READ:
+      return {
+        ...ChatState,
       }
     default:
-      return StudentCoursesState;
+      return ChatState;
   }
 }
 
-export function StudentCoursesProvider({ children }: {
+export function ChatProvider({ children }: {
   children: React.ReactElement
 }) {
-  const [StudentCourses, dispatch] = useReducer(StudentCourseReducer, initialStudentCoursesState);
+  const [Chat, dispatch] = useReducer(StudentCourseReducer, initialChatState);
 
   return (
-    <StudentCoursesContext.Provider value={StudentCourses}>
-    <StudentCoursesDispatchContext.Provider value={dispatch}>
-      { children }
-    </StudentCoursesDispatchContext.Provider>
-    </StudentCoursesContext.Provider>
+    <ChatContext.Provider value={Chat}>
+      <ChatDispatchContext.Provider value={dispatch}>
+        {children}
+      </ChatDispatchContext.Provider>
+    </ChatContext.Provider>
   );
 }
 
-export function useStudentCourses() {
-  return useContext(StudentCoursesContext);
+export function useChat() {
+  return useContext(ChatContext);
 }
 
-export function useStudentCoursesDispatch() {
-  return useContext(StudentCoursesDispatchContext);
+export function useChatDispatch() {
+  return useContext(ChatDispatchContext);
 }

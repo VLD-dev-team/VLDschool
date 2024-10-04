@@ -8,7 +8,7 @@ export default async function progressSummary() {
     return (
         <div>
             <p className="uppercase text-sm pb-4">RÉSUMÉ DE VOTRE PROGRESSION</p>
-            <div className="flex flex-wrap md:flex gap-3 bg-[var(--surface)] rounded p-4 md:p-8">
+            <div className="flex flex-wrap md:flex gap-3 bg-[var(--surface)] rounded p-4 md:p-8 shadow">
                 <ProgressChart progressData={progressData}></ProgressChart>
             </div>
         </div>
