@@ -7,7 +7,7 @@ export default async function ChatPage() {
 
     return (
         <div>
-            <ChatList chatRooms={chatRooms}></ChatList>
+            <ChatList></ChatList>
         </div>
     )
 }

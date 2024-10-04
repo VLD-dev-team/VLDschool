@@ -4,11 +4,11 @@ import { ChatRoom } from "@/app/types/chat";
 import { auth } from "@/auth";
 import { DatabaseService } from "@/db";
 
-export default async function geChatRooms(): Promise<ChatRoom[] | null> {
+export default async function geChatRooms(): Promise<ChatRoom[]> {
 
     const session = await auth();
     if (!session) {
-        return null;
+        return [];
     }
 
     const db = new DatabaseService();
