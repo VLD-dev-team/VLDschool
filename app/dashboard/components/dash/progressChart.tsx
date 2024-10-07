@@ -1,6 +1,6 @@
 "use client";
 
-import { registerCharts } from "@/app/services/charts/registerCharts";
+import { registerCharts } from "@/functions/charts/registerCharts";
 import { Bar } from "react-chartjs-2";
 
 registerCharts();

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ShortcutButton from "../shortcutButton";
-import { getLastViewedChapterURL } from "@/app/services/courses/getLastViewedChapter";
+import { getLastViewedChapterURL } from "@/functions/courses/getLastViewedChapter";
 
 export default async function Shortcuts() {
 

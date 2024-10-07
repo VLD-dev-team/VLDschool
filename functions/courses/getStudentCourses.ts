@@ -1,7 +1,7 @@
 "use server"
 
 import { auth } from "@/auth";
-import { Course } from "../../types/course";
+import { Course } from "../../app/types/course";
 import executeQuery from "@/db";
 
 export const getStudentCourses = async (type?: string): Promise<Course[] | null> => {

@@ -1,6 +1,6 @@
 import TabButton from "./tabButton";
 import { Course } from "@/app/types/course";
-import { getStudentCourses } from "@/app/services/courses/getStudentCourses";
+import { getStudentCourses } from "@/functions/courses/getStudentCourses";
 import { ChatProvider } from "../../chats/context/chatContext";
 
 export default async function NavBar() {

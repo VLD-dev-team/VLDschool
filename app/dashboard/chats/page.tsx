@@ -1,5 +1,5 @@
 import ChatList from "./components/chatList";
-import getChatRooms from "@/app/services/chats/getChatRooms";
+import getChatRooms from "@/functions/chats/getChatRooms";
 
 export default async function ChatPage() {
 

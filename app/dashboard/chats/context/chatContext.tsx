@@ -60,7 +60,6 @@ export function ChatProvider({ children }: {
   const [Chat, dispatch] = useReducer(StudentCourseReducer, initialChatState);
   const socket = getSocket();
 
-
   socket.on("newRoom", (data: any) => {
     dispatch({
       type: NEW_CHATROOM,

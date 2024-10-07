@@ -1,4 +1,4 @@
-import { getStudentCourses } from "@/app/services/courses/getStudentCourses"
+import { getStudentCourses } from "@/functions/courses/getStudentCourses"
 import { Course } from "@/app/types/course";
 import Link from "next/link";
 

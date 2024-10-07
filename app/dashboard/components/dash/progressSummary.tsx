@@ -1,4 +1,4 @@
-import { getProgressSummary } from "@/app/services/progress/getProgressSummary";
+import { getProgressSummary } from "@/functions/progress/getProgressSummary";
 import ProgressChart from "./progressChart";
 
 export default async function progressSummary() {

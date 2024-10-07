@@ -1,4 +1,4 @@
-import fulfill_session from "@/app/services/checkoutSession/fulfill_session";
+import fulfill_session from "@/functions/checkoutSession/fulfill_session";
 import { auth } from "@/auth";
 import executeQuery from "@/db";
 import { stripe } from "@/stripe";
