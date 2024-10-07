@@ -1,6 +1,6 @@
 "use server";
 
-import { Course } from "@/app/types/course";
+import { Course } from "@/types/course";
 import { auth } from "@/auth";
 import executeQuery from "@/db";
 

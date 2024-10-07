@@ -1,5 +1,5 @@
 import TabButton from "./tabButton";
-import { Course } from "@/app/types/course";
+import { Course } from "@/types/course";
 import { getStudentCourses } from "@/functions/courses/getStudentCourses";
 import { ChatProvider } from "../../chats/context/chatContext";
 

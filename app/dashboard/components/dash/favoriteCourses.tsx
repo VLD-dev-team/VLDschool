@@ -1,5 +1,5 @@
 import { getStudentCourses } from "@/functions/courses/getStudentCourses"
-import { Course } from "@/app/types/course";
+import { Course } from "@/types/course";
 import Link from "next/link";
 
 export default async function FavoriteCourses() {

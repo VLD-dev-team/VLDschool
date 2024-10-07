@@ -1,6 +1,6 @@
 "use server";
 
-import { ChatRoom } from "@/app/types/chat";
+import { ChatRoom } from "@/types/chat";
 import { auth } from "@/auth";
 import executeQuery from "@/db";
 

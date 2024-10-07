@@ -1,7 +1,7 @@
 "use client";
 
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
-import { ChatRoom } from "@/app/types/chat";
+import { ChatRoom } from "@/types/chat";
 import { getSocket } from "@/app/utils/getSocket";
 import createChatRoom from "@/functions/chats/createChatRoom";
 

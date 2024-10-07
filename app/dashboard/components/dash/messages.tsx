@@ -1,6 +1,6 @@
 import ChatList from "@/app/dashboard/chats/components/chatList"
 import getChatRooms from "@/functions/chats/getChatRooms"
-import { ChatRoom } from "@/app/types/chat"
+import { ChatRoom } from "@/types/chat"
 
 export default async function DashBoardMessages() {
 

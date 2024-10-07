@@ -4,9 +4,9 @@ export interface Chat {
     chatID: number;
     chatRoomID: number;
     sendDate: string;
-    author: User | string;
+    author: User | number;
     textContent: string;
-    responseTo: null | Chat | string;
+    responseTo: null | Chat | number;
     attachements: Attachement[] | null;
     readedBy: User[];
 }
@@ -14,7 +14,7 @@ export interface Chat {
 enum Attachement_type { "image", "video" }
 
 export interface Attachement {
-    attachementID: number;
+    attachementID?: number;
     author: User | string;
     type: Attachement_type;
     path: string;
