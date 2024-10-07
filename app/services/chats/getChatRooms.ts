@@ -2,7 +2,7 @@
 
 import { ChatRoom } from "@/app/types/chat";
 import { auth } from "@/auth";
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 
 export default async function geChatRooms(): Promise<ChatRoom[]> {
 
@@ -11,14 +11,13 @@ export default async function geChatRooms(): Promise<ChatRoom[]> {
         return [];
     }
 
-    const db = new DatabaseService();
     const query = `
         SELECT *
         FROM chatrooms cr
         INNER JOIN chatroommembers crm ON cr."roomID" = crm."roomID"
         WHERE crm."userID" = $1 
     ;`;
-    const results = await db.executeQuery(query, [session.user.id ?? 0]);
+    const results = await executeQuery(query, [session.user.id ?? 0]);
 
     let rooms: ChatRoom[] = [];
 

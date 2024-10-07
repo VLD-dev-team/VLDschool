@@ -2,7 +2,7 @@
 
 import { Course } from "@/app/types/course";
 import { auth } from "@/auth";
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 
 export const getProgressSummary = async (): Promise<{ totalXP: number, days: { progressDate: string, dailyProgressScore: number }[] } | null> => {
 
@@ -37,8 +37,7 @@ export const getProgressSummary = async (): Promise<{ totalXP: number, days: { p
             d.Date
         ;
     `
-    const db = new DatabaseService();
-    const results = await db.executeQuery(query, [userID]);
+    const results = await executeQuery(query, [userID]);
 
     const daysDetails = results.rows;
     let totalXP = 0;

@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import OfferLayer from "./components/offerLayer";
 import ProductCard from "./components/productCard";
 import { auth } from "@/auth";
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 
 export const metadata: Metadata = {
     title: "Boutique - VLDschool",
@@ -19,8 +19,7 @@ export default async function ShopHome() {
     const session = await auth();
     let studentCourses = [];
     if (session) {
-        const db = new DatabaseService();
-        const results = await db.executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 ;`, [session.user.id ?? ""]);
+        const results = await executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 ;`, [session.user.id ?? ""]);
         studentCourses = results.rows.map((value, index) => { return value.stripeItemID })
     }
 

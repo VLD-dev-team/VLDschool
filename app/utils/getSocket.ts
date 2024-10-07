@@ -1,12 +1,20 @@
 "use client";
 
-import { io, Socket } from "socket.io-client";
+import { io, Socket } from "socket.io-client"
 
 let socket: Socket | null = null;
 
 export const getSocket = (): Socket => {
   if (!socket) {
-    socket = io("https://localhost:3000 ");
+    console.log("connection to socket");
+    
+    socket = io();
+
+    socket.on("connection", (data: any) => {
+      console.log(data);
+    })
+
+    console.log(socket);    
   }
   return socket;
 };

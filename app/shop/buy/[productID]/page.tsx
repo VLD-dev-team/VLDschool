@@ -1,8 +1,8 @@
 import { auth } from "@/auth"
-import { DatabaseService } from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
 import BuyPageClient from "./components/buyPage";
+import executeQuery from "@/db";
 
 export default async function BuyPage({ params }: { params: { productID: string } }) {
 
@@ -28,8 +28,7 @@ export default async function BuyPage({ params }: { params: { productID: string 
 
     // Si l'utilisateur est connecté on effectue les vérifications
     if (session) {
-        const db = new DatabaseService();
-        const results = await db.executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 AND "stripeItemID" = $2 ;`, [session.user.id ?? "x", product.id]);
+        const results = await executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 AND "stripeItemID" = $2 ;`, [session.user.id ?? "x", product.id]);
 
         // Si erreur lors de la requette sql on renvoi 500
         if (results == null || results.rowCount == null) {

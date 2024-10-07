@@ -1,7 +1,6 @@
 "use client";
 
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
-import { Course } from "@/app/types/course"
 import { ChatRoom } from "@/app/types/chat";
 import { getSocket } from "@/app/utils/getSocket";
 
@@ -61,18 +60,15 @@ export function ChatProvider({ children }: {
   const [Chat, dispatch] = useReducer(StudentCourseReducer, initialChatState);
   const socket = getSocket();
 
-  socket.on("connection", () => {
 
-  })
-
-  socket.on("newRoom", (data) => {
+  socket.on("newRoom", (data: any) => {
     dispatch({
       type: NEW_CHATROOM,
       data: data,
     });
   })
 
-  socket.on("newMessage", (data) => {
+  socket.on("newMessage", (data: any) => {
     dispatch({
       type: NEW_CHATROOM,
       data: data,

@@ -3,7 +3,7 @@ import Google from "next-auth/providers/google"
 import Resend from "next-auth/providers/resend"
 import type { Provider } from "next-auth/providers"
 import PostgresAdapter from "@auth/pg-adapter"
-import { DatabaseService } from "./db"
+import { pgpool } from "./db"
 import { authEvents } from "./authEvents"
  
 declare module "next-auth" {
@@ -42,7 +42,7 @@ export const providerMap = providers.map((provider) => {
 })
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: PostgresAdapter(new DatabaseService().pool),
+  adapter: PostgresAdapter(pgpool),
   providers,
   pages: {
     signIn: "/auth",

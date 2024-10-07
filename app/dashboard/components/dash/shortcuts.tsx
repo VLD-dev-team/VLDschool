@@ -1,6 +1,5 @@
 import Link from "next/link";
 import ShortcutButton from "../shortcutButton";
-import { DatabaseService } from "@/db";
 import { getLastViewedChapterURL } from "@/app/services/courses/getLastViewedChapter";
 
 export default async function Shortcuts() {

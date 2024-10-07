@@ -2,10 +2,7 @@
 
 import { auth } from "@/auth";
 import { Course } from "../../types/course";
-import { DatabaseService } from "@/db";
-
-// Importation de la base de données
-const db = new DatabaseService();
+import executeQuery from "@/db";
 
 export const getStudentCourses = async (type?: string): Promise<Course[] | null> => {
 
@@ -24,7 +21,7 @@ export const getStudentCourses = async (type?: string): Promise<Course[] | null>
     }
     query += ` ;`
 
-    const results = await db.executeQuery(query, [userID.toString()]);
+    const results = await executeQuery(query, [userID.toString()]);
 
     // Parsing des résultats dans une liste
     let courses: Array<Course> = [];

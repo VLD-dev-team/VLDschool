@@ -12,10 +12,11 @@ app.prepare().then(() => {
   const httpServer = createServer(handler);
 
   const io = new Server(httpServer);
+  console.log(io);
+  
 
   io.on("connection", (socket) => {
     console.log("New socket connection");
-    
   });
 
   httpServer

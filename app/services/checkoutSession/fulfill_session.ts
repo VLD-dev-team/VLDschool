@@ -1,10 +1,8 @@
 "use server";
 
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
-
-const db = new DatabaseService();
 
 export default async function fulfill_checkout(sessionID: string) {
 
@@ -20,7 +18,7 @@ export default async function fulfill_checkout(sessionID: string) {
     // On obtient le userID du client à partir de son customer ID
     const customerID: string = checkoutSession.customer?.toString() ?? "";
 
-    const searchUserResults = await db.executeQuery('SELECT id FROM users WHERE "stripeCustomerID" = $1 ;', [customerID]);
+    const searchUserResults = await executeQuery('SELECT id FROM users WHERE "stripeCustomerID" = $1 ;', [customerID]);
 
     if (searchUserResults.rowCount == 0) {
         throw new Error("Impossible de trouver l'utilisateur associé au client");
@@ -46,10 +44,10 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
     switch (product.metadata.type) {
         case "tutoring": {
 
-            const results = await db.executeQuery('SELECT "tutoringID" FROM privatelessons WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
+            const results = await executeQuery('SELECT "tutoringID" FROM privatelessons WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
             if (results.rowCount == 0) {
                 console.log(`Attribution du produit ${product}`)
-                const dbreq = await db.executeQuery('INSERT INTO privatelessons ("stripeItemID", "studentID") VALUES ($1, $2) ;', [product.id, userID]);
+                const dbreq = await executeQuery('INSERT INTO privatelessons ("stripeItemID", "studentID") VALUES ($1, $2) ;', [product.id, userID]);
             }
 
             break;
@@ -57,16 +55,16 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
 
         case "course": {
 
-            const results = await db.executeQuery('SELECT "courseRegID" FROM courseregistrations WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
+            const results = await executeQuery('SELECT "courseRegID" FROM courseregistrations WHERE "stripeItemID" = $1 AND "studentID" = $2 ;', [product.id, userID]);
             if (results.rowCount == 0) {
                 console.log(`Attribution du produit ${product}`)
 
                 // On chercher l'id du cours dans la bdd
-                const searchInternalCourseID = await db.executeQuery('SELECT "courseID" FROM courses WHERE "stripeItemID" = $1 ;', [product.id]);
+                const searchInternalCourseID = await executeQuery('SELECT "courseID" FROM courses WHERE "stripeItemID" = $1 ;', [product.id]);
                 const courseID = searchInternalCourseID.rows[0].courseID;
 
                 // On ajoute le cours à l'étudiant
-                const dbreq = await db.executeQuery('INSERT INTO courseregistrations ("studentID", "checkoutSessionID", "courseID", "stripeItemID") VALUES ($1, $2, $3, $4) ;', [userID, checkoutSessionID, courseID, product.id]);
+                const dbreq = await executeQuery('INSERT INTO courseregistrations ("studentID", "checkoutSessionID", "courseID", "stripeItemID") VALUES ($1, $2, $3, $4) ;', [userID, checkoutSessionID, courseID, product.id]);
             }
 
             break;
