@@ -10,7 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@auth/pg-adapter": "^1.2.0",
+    "@auth/pg-adapter": "^1.0.0",
     "@stripe/react-stripe-js": "^2.8.0",
     "@stripe/stripe-js": "^4.4.0",
     "material-symbols": "^0.24.0",

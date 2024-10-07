@@ -7,7 +7,7 @@ export const pgpool = new Pool({
     database: process.env.DATABASE_NAME,
     max: 50,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 2000,
+    connectionTimeoutMillis: 10000,
     port: 5432,
 });
 

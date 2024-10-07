@@ -3,6 +3,7 @@
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
 import { ChatRoom } from "@/app/types/chat";
 import { getSocket } from "@/app/utils/getSocket";
+import createChatRoom from "@/functions/chats/createChatRoom";
 
 interface ChatStateTypes {
   rooms: ChatRoom[],
@@ -59,7 +60,7 @@ export function ChatProvider({ children }: {
 }) {
   const [Chat, dispatch] = useReducer(StudentCourseReducer, initialChatState);
   const socket = getSocket();
-
+  
   socket.on("newRoom", (data: any) => {
     dispatch({
       type: NEW_CHATROOM,

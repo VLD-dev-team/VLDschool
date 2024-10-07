@@ -4,6 +4,7 @@ import Shortcuts from "./components/dash/shortcuts"
 import FavoriteCourses from "./components/dash/favoriteCourses"
 import ProgressSummary from "./components/dash/progressSummary"
 import DashBoardMessages from "./components/dash/messages"
+import createChatRoom from "@/functions/chats/createChatRoom"
 
 export default async function Page() {
   const session = await auth()
