@@ -4,7 +4,7 @@ import { useChat } from "../context/chatContext";
 
 export default function ChatList() {
 
-    const rooms = useChat()
+    const rooms = useChat();
 
     return (
         <div>

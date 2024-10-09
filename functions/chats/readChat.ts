@@ -7,7 +7,7 @@ export default async function readChat(chatID: number, userID: number): Promise<
     try {
         
         const query = `INSERT INTO chatreadedby ("chatID", "userID") VALUES ($1, $2);`
-        var results = await executeQuery(query, [chatID, userID]);
+        await executeQuery(query, [chatID, userID]);
         return true;
 
     } catch (error) {

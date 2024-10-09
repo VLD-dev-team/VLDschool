@@ -5,7 +5,7 @@ import executeQuery from "@/db";
 import { User } from "next-auth";
 
 /// NE PAS UTILISER SANS AVOIR CHECKÉ LES AUTORISATIONS
-export default async function createChatRoom(members: User[], name: string, iconPath: string): Promise<ChatRoom | null> {
+export default async function createChatRoom(membersID: number[], name: string, iconPath: string): Promise<ChatRoom | null> {
 
     try {
 
@@ -19,12 +19,12 @@ export default async function createChatRoom(members: User[], name: string, icon
         const roomID = result.rows[0].roomID;
 
         let connectionData = ""
-        members.forEach(async (member) => {  
+        membersID.forEach(async (memberID) => {  
             const createConnectionsQuery = `
                 INSERT INTO chatroommembers ("roomID", "userID")
                 VALUES ( $1, $2 )
             ;`;
-            result = await executeQuery(createConnectionsQuery, [roomID, member.id ?? 0])
+            result = await executeQuery(createConnectionsQuery, [roomID, memberID ?? 0])
             console.log(result);
         });
 
@@ -34,7 +34,7 @@ export default async function createChatRoom(members: User[], name: string, icon
             iconPath: iconPath,
             unreadCount: 0,
             lastChat: null,
-            members: members
+            members: membersID,
         };
 
     } catch (error) {

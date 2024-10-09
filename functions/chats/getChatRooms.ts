@@ -4,20 +4,37 @@ import { ChatRoom } from "@/types/chat";
 import { auth } from "@/auth";
 import executeQuery from "@/db";
 
-export default async function geChatRooms(): Promise<ChatRoom[]> {
+export default async function getChatRooms(): Promise<ChatRoom[]> {
 
     const session = await auth();
     if (!session) {
         return [];
     }
 
+    console.log('Obtention de la liste de discussion.');
+
     const query = `
-        SELECT *
-        FROM chatrooms cr
-        INNER JOIN chatroommembers crm ON cr."roomID" = crm."roomID"
-        WHERE crm."userID" = $1 
+        SELECT 
+            cr."roomID",
+            cr.name,
+            COUNT(c."chatID") AS "unreadCount"
+        FROM 
+            chatrooms cr
+        INNER JOIN 
+            chatroommembers crm ON cr."roomID" = crm."roomID"
+        LEFT JOIN 
+            chats c ON cr."roomID" = c."chatRoomID"
+        LEFT JOIN 
+            chatreadedby crb ON c."chatID" = crb."chatID" AND crb."userID" = $1
+        WHERE 
+            crm."userID" = $1 
+            AND crb."chatID" IS NULL
+        GROUP BY 
+            cr."roomID", cr.name
+        ORDER BY 
+            "unreadCount" DESC;
     ;`;
-    const results = await executeQuery(query, [session.user.id ?? 0]);
+    const results = await executeQuery(query, [session.user.id ?? 0]);    
 
     let rooms: ChatRoom[] = [];
 
@@ -37,9 +54,12 @@ export default async function geChatRooms(): Promise<ChatRoom[]> {
                 attachements: null,
                 readedBy: []
             } */,
-            members: []
+            members: undefined
         })
     })
+
+    console.log("Liste obtenue : ", rooms);
+
 
     return rooms;
 }

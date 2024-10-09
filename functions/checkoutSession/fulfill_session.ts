@@ -3,6 +3,7 @@
 import executeQuery from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
+import createChatRoom from "../chats/createChatRoom";
 
 export default async function fulfill_checkout(sessionID: string) {
 
@@ -50,6 +51,9 @@ async function affectCourse(item: Stripe.LineItem, userID: string, checkoutSessi
                 const dbreq = await executeQuery('INSERT INTO privatelessons ("stripeItemID", "studentID") VALUES ($1, $2) ;', [product.id, userID]);
             }
 
+            const newChatRoom = await createChatRoom([parseInt(userID), parseInt(product.metadata.authorID ?? 0)], product.name, product.metadata.icon);
+            console.log("New chatroom created : ", newChatRoom);
+            
             break;
         }
 

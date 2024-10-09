@@ -1,7 +1,7 @@
 import TabButton from "./tabButton";
 import { Course } from "@/types/course";
 import { getStudentCourses } from "@/functions/courses/getStudentCourses";
-import { ChatProvider } from "../../chats/context/chatContext";
+import MessageButtonIndicator from "./messageIndicator";
 
 export default async function NavBar() {
     // On importe les cours
@@ -12,9 +12,7 @@ export default async function NavBar() {
             <img src="/logos/vldminiwhite.png" alt="VLDschool" width="80%" height={30} className="hidden md:block mt-4 p-1" />
             <TabButton href={"/dashboard"} iconNameOrPath={"home"} isGoogleIcon={true} />
             <TabButton href={"/dashboard/profile"} iconNameOrPath={"person"} isGoogleIcon={true} />
-            <ChatProvider>
-                <TabButton href={"/dashboard/chats"} iconNameOrPath={"chat"} isGoogleIcon={true} />
-            </ChatProvider>
+            <MessageButtonIndicator></MessageButtonIndicator>
             <div className="shrink-0 hidden md:block h-[2px] bg-[var(--primary)] w-1/6 mx-1"></div>
             <TabButton href={"/dashboard/courses"} iconNameOrPath={"view_list"} isGoogleIcon={true} />
             <span className="flex-col gap-5 hidden md:flex">

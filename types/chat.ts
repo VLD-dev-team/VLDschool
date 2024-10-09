@@ -26,5 +26,5 @@ export interface ChatRoom {
     iconPath: string;
     unreadCount: number;
     lastChat: Chat | null | undefined;
-    members: User[];
+    members: User[] | number[] | undefined;
 }

@@ -11,7 +11,7 @@ export const getSocket = (): Socket => {
     socket = io();
 
     socket.on("connection", (data: any) => {
-      console.log("Socket connecté.");
+      console.log("CLIENT: Socket connecté.");
     })
   }
   return socket;
