@@ -8,7 +8,7 @@ export default function ChatList() {
 
     return (
         <div>
-            {
+            {                   
                 rooms.rooms.map((room) => {
                     return <p>{room.name}</p>
                 })

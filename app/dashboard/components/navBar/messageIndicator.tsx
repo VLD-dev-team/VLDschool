@@ -16,7 +16,8 @@ export default function MessageButtonIndicator() {
             getChatRooms().then((loadedRooms) => {
                 dispatch({
                     type: CHATROOMS_LOADED,
-                    rooms: loadedRooms,
+                    rooms: loadedRooms.rooms,
+                    unreadCount: loadedRooms.unreadCount
                 })
             }).catch((error) => {
                 dispatch({

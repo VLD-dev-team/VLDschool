@@ -4,11 +4,11 @@ import { ChatRoom } from "@/types/chat";
 import { auth } from "@/auth";
 import executeQuery from "@/db";
 
-export default async function getChatRooms(): Promise<ChatRoom[]> {
+export default async function getChatRooms(): Promise<{unreadCount: number, rooms: ChatRoom[]}> {
 
     const session = await auth();
     if (!session) {
-        return [];
+        return {unreadCount: 0, rooms: []};
     }
 
     console.log('Obtention de la liste de discussion.');
@@ -43,7 +43,7 @@ export default async function getChatRooms(): Promise<ChatRoom[]> {
             roomID: room.roomID,
             name: room.name,
             iconPath: room.iconPath,
-            unreadCount: room.unreadCount ?? 0,
+            unreadCount: parseInt(room.unreadCount ?? '0'),
             lastChat: null /* {
                 chatID: room.lastChat.chatID,
                 chatRoomID: room.lastChat.chatRoomID,
@@ -60,6 +60,5 @@ export default async function getChatRooms(): Promise<ChatRoom[]> {
 
     console.log("Liste obtenue : ", rooms);
 
-
-    return rooms;
+    return {unreadCount: 0, rooms: rooms};
 }
