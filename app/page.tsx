@@ -7,6 +7,7 @@ import Card from "./components/card";
 import VisitorSection from "./components/visitorCount";
 import InterfacePreviewSection from "./components/interfaceShowcaseSection";
 import ProgrammingLanguagesSection from "./components/programmingLangagesCarroussel";
+import FAQSection from "./components/faqCase";
 import { auth } from "@/auth";
 
 export const metadata: Metadata = { 
@@ -203,6 +204,115 @@ export default async function LandingPage() {
         <InterfacePreviewSection></InterfacePreviewSection>
       </section>
         <ProgrammingLanguagesSection></ProgrammingLanguagesSection>
+        <section className="py-60">
+            <div className="container mx-auto px-6 md:px-12">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl md:text-2xl font-bold">Proposez votre formation sur VLD</h2>
+                <p className="mt-4 max-w-3xl mx-auto text-md md:text-lg text-gray-300">
+                  Partagez vos compétences avec notre communauté et générez des revenus en soumettant vos formations sur notre plateforme.
+                </p>
+              </div>
+              <div className="bg-[var(--surface)] p-6 md:p-10 rounded-lg shadow-lg text-[var(--neutral)]">
+                <h3 className="text-l font-semibold mb-6">Comment soumettre votre formation ?</h3>
+                <ol className="list-decimal list-inside text-gray-400 space-y-6">
+                    <li className="flex items-start">
+                    <span className="material-symbols-rounded text-4xl text-[var(--neutral)] mr-4">folder_zip</span>
+                    <div className="flex-1">
+                      Créez un dossier <strong>.zip</strong> avec tout le contenu de votre formation :
+                      <ul className="list-disc list-inside ml-6 mt-1">
+                        <li>Leçons</li>
+                        <li>Exercices</li>
+                        <li>Vidéos</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="material-symbols-rounded text-4xl text-[var(--neutral)] mr-4">mail</span>
+                    <p className="flex-1">
+                      Envoyez votre dossier à notre équipe à l'adresse suivante : 
+                      <a href="mailto:submission@vldschool.com" className="text-[var(--primary)] hover:underline">submission@vldschool.com</a>
+                    </p>
+                  </li>
+
+                  <li className="flex items-start">
+                    <span className="material-symbols-rounded text-4xl text-[var(--neutral)] mr-4">check_circle</span>
+
+                    <p className="flex-1">
+                      Notre équipe vérifiera la qualité de votre contenu et validera sa conformité aux standards de la plateforme.
+                    </p>
+                  </li>
+
+                  <li className="flex items-start">
+                    <span className="material-symbols-rounded text-4xl text-[var(--neutral)] mr-4">contract</span>
+                    <p className="flex-1">
+                      Si validé, un contrat sera signé, et votre formation sera disponible sur notre plateforme.
+                    </p>
+                  </li>
+                </ol>
+
+                <div className="mt-8">
+                  <h3 className="text-l font-semibold mb-4">Répartition des revenus</h3>
+                  <p className="text-gray-400">
+                    La plateforme prélève <strong>25%</strong> des ventes, incluant les frais Stripe. Le reste vous revient.
+                  </p>
+                </div>
+          
+          <div className="mt-8">
+            <h3 className="text-l font-semibold mb-4">Guide pour contributeurs</h3>
+            <p className="text-gray-400">
+              Consultez notre fiche récapitulative pour obtenir plus de détails sur les formats requis pour les leçons, les exercices et les vidéos :
+            </p>
+            <a href="/downloads/contributor-guide.pdf" className="mt-4 inline-block bg-[var(--primary)] text-white px-6 py-3 rounded-md hover:bg-[var(--primary-hover)] transition-colors">
+              Télécharger la fiche récapitulative
+            </a>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center">
+          <a href="mailto:submission@vldschool.com" className="bg-[var(--primary)] text-white px-8 py-4 rounded-md hover:bg-[var(--primary-hover)] transition-colors">
+            Proposer ma formation
+          </a>
+        </div>
+      </div>
+    </section>
+      <section className="mt-48">
+        <FAQSection></FAQSection>
+      </section>
+      <footer className="text-[white] bg-[black] py-24">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+          <div className="mb-8 md:mb-0">
+            <img src="/logos/vldminiwhite.png" alt="Logo" className="h-16 mx-auto md:mx-0" />
+            <p className="mt-4 max-w-xs text-gray-300">
+              Nous sommes une plateforme dédiée à la formation en ligne, offrant des parcours complets pour développer vos compétences.
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Nous contacter</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>Email : <a href="mailto:contact@vldschool.com" className="hover:text-[var(--primary)]">contact@vldschool.com</a></li>
+                <li>Discord : <a href="https://discord.gg/vldschool" className="hover:text-[var(--primary)]">Rejoignez notre Discord</a></li>
+                <li>Instagram : <a href="https://instagram.com/vldschool" className="hover:text-[var(--primary)]">@vldschool</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Créateurs</h3>
+              <ul className="space-y-2 text-gray-300">
+                <li>BAUDRANT Luka</li>
+                <li>MARY Valentin</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-12 border-t border-gray-700 pt-4 text-center text-gray-400">
+          <p>&copy; {new Date().getFullYear()} VLD School. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
     </div>
   )
 }
