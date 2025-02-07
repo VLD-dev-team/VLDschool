@@ -43,10 +43,6 @@ const FAQSection = () => {
       question: 'Quels sont les modes de paiement acceptés ?',
       answer: 'Nous acceptons les cartes de crédit, PayPal, et d\'autres modes de paiement en ligne.',
     },
-    {
-      question: 'Est-ce que les formations sont certifiantes ?',
-      answer: 'Oui, à la fin de chaque formation, un certificat est délivré attestant de votre réussite.',
-    },
   ];
 
   return (
