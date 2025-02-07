@@ -50,7 +50,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-b from-[#03001C] via-[#3122b4] to-[#2a246d] text-white">
+    <section className="py-16  text-white"> { /* bg-gradient-to-b from-[#03001C] via-[#3122b4] to-[#2a246d] */ }
       <div className="container mx-auto px-6 md:px-12">
         <div className="text-center">
           <h2 className="text-4xl font-bold">FAQ</h2>
