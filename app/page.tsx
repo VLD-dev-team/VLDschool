@@ -18,7 +18,7 @@ export default async function LandingPage() {
   return (
     <div className="w-full h-full bg-[var(--primary-container)] overflow-y-scroll text-white">
       <header className="fixed z-10 w-full min-h-[100px] flex flex-col items-center backdrop-blur-lg bg-[var(--primary-container-70)]">
-        <a href="/shop" className="w-full z-10 h-[50px] bg-white text-black flex items-center justify-center">
+        <a className="w-full z-10 h-[50px] bg-white text-black flex items-center justify-center">
           <div className="w-[90%] xl:w-[70%] h-full flex items-center justify-between ">
             <p><strong>Bientôt disponible ! </strong><span className="hidden md:inline"></span></p>
             <div className="flex gap-2 items-center">
