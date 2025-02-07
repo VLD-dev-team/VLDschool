@@ -1,6 +1,6 @@
-import fulfill_session from "@/app/services/checkoutSession/fulfill_session";
+import fulfill_session from "@/functions/checkoutSession/fulfill_session";
 import { auth } from "@/auth";
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 import { stripe } from "@/stripe";
 import Stripe from "stripe";
 
@@ -11,9 +11,8 @@ export default async function ReturnPage({ params }: { params: { checkoutsession
 
     // Vérification que la session de paiement à bien été intenté par l'utilisateur connecté
     const session = await auth();
-    const db = new DatabaseService();
 
-    const results = await db.executeQuery('SELECT id FROM users WHERE "stripeCustomerID" = $1 ;', [`${checkoutSession.customer}`]);
+    const results = await executeQuery('SELECT id FROM users WHERE "stripeCustomerID" = $1 ;', [`${checkoutSession.customer}`]);
     console.log(results.rows, checkoutSession.customer);
 
     if (results.rows[0].id != session?.user.id) {

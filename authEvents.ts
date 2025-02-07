@@ -1,8 +1,6 @@
 import { User } from "next-auth"
 import { stripe } from "./stripe";
-import { DatabaseService } from "./db";
-
-const db = new DatabaseService();
+import executeQuery from "./db";
 
 export const authEvents = {
     createUser: async (message: { user: User }) => {
@@ -24,11 +22,11 @@ export const authEvents = {
 
         // Sauvegarde de l'id stripe dans la base de données
         const customerID = stripeCustomer?.id ?? "";
-        await db.executeQuery('UPDATE users SET "stripeCustomerID" = $1 WHERE id = $2 ;', [customerID, userID]);
+        await executeQuery('UPDATE users SET "stripeCustomerID" = $1 WHERE id = $2 ;', [customerID, userID]);
 
         // Affectation du cours linux
         const courseID = 0;
-        await db.executeQuery('INSERT INTO courseregistrations ("studentID", "courseID", "studentLastChapter", "isFavorite") VALUES ( $1 , 0 , "" , true )', [userID]);
+        await executeQuery('INSERT INTO courseregistrations ("studentID", "courseID", "studentLastChapter", "isFavorite") VALUES ( $1 , 0 , "" , true )', [userID]);
 
         return;
     }
