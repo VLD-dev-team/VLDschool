@@ -12,11 +12,11 @@ export default function AppLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex flex-nowrap w-full h-full overflow-hidden">
-      <div className="shrink-0 w-[100px] ">
+    <div className="flex flex-col-reverse md:flex-row flex-nowrap w-full h-full overflow-hidden">
+      <div className="shrink-0 md:w-[100px] ">
         <NavBar></NavBar>
       </div>
-      <div className="grow">{children}</div>
+      <div className="grow p-8 md:p-12 overflow-y-scroll">{children}</div>
     </div>
   );
 }

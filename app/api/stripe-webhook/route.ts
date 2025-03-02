@@ -1,6 +1,6 @@
 "use server";
 
-import fulfill_checkout from '@/app/services/checkoutSession/fulfill_session';
+import fulfill_checkout from '@/functions/checkoutSession/fulfill_session';
 import { stripe } from '@/stripe';
 
 export async function POST(request: Request) {

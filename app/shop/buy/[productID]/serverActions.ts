@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/auth";
-import { DatabaseService } from "@/db";
+import executeQuery from "@/db";
 import { stripe } from "@/stripe";
 import { redirect } from "next/navigation";
 
@@ -40,8 +40,7 @@ export async function createCheckoutSession(productID: string, optionVLDplusSele
     }
 
     // On vérifie que l'utilisateur ne possède pas déjà le produit principal
-    const db = new DatabaseService();
-    const checkProductAlreadyOwnedResults = await db.executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 AND "stripeItemID" = $2 ;`, [session.user.id ?? "x", productID]);
+    const checkProductAlreadyOwnedResults = await executeQuery(`SELECT "stripeItemID" FROM courseregistrations WHERE "studentID" = $1 AND "stripeItemID" = $2 ;`, [session.user.id ?? "x", productID]);
 
     // Si erreur lors de la requette sql on renvoi 500
     if (checkProductAlreadyOwnedResults == null || checkProductAlreadyOwnedResults.rowCount == null) {
@@ -60,7 +59,7 @@ export async function createCheckoutSession(productID: string, optionVLDplusSele
     }
 
     // On obtient l'ID stripe du client si il existe
-    const clientStripeIDresults = await db.executeQuery(`SELECT "stripeCustomerID" FROM users WHERE id = $1 ;`, [session.user.id ?? ""])
+    const clientStripeIDresults = await executeQuery(`SELECT "stripeCustomerID" FROM users WHERE id = $1 ;`, [session.user.id ?? ""])
     const clientStripeID: string | null = clientStripeIDresults.rows[0].stripeCustomerID;
 
     // On crée la session de paiement
